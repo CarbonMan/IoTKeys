@@ -1,0 +1,1 @@
+This will allow the connection of scales and cubing to the Australia Post online booking screen.
