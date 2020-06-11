@@ -1,0 +1,35 @@
+{
+    disabled: false,
+    name: 'Australia Post',
+    process: {
+        initialURL: "http://https://auspost.com.au/auth/login",
+        targets: [{
+                regexp: 'x2=%22prog\\\\symbols\\\\ICM73\\.x2',
+                parameters: {
+                    site: "whirlpool",
+                    scales: "SF-884",
+                    labelPrinter: 'Smart Label Printer 200 & 420'
+                    /*
+                    cubic: "HttpKinect",scales: "PS-USB",tempAndWeight: "TemperatureAndScales",,scales: "USBS1",scales: "B-6700",scales: "SF-884",items: "IT1",length: "CL1",width: "CW1",height: "CH1",scales: "PW1"
+                     */
+                },
+                scripts: {
+                    body: {
+                        file: 'scripts\\centaur\\Centaur batched with cubist interface.js'
+                    }
+                }
+            }, {
+                /* Receiving */
+                regexp: 'x2=%22prog\\\\symbols\\\\ICP33\\.x2',
+                parameters: {
+                    addressBook: "data\\addresses.csv"
+                },
+                scripts: {
+                    body: {
+                        file: 'scripts\\centaur\\inbound.js'
+                    }
+                }
+            }
+        ]
+    }
+}
