@@ -3,7 +3,7 @@
     {
       "id": "SF-884",
       "category": "Device",
-      "type": "Scale",
+      "type": "scales",
       "name": "SF-884 scales",
       "version": "0.1",
       "descriptionLocation": "devices/SF-884/description-0.1.txt",
