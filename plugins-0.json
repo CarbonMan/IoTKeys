@@ -1,6 +1,7 @@
 {
   "plugins": [
     {
+      "id": "SF-884",
       "category": "Device",
       "type": "Scale",
       "name": "SF-884 scales",
