@@ -7,8 +7,7 @@
       "name": "SF-884 scales",
       "version": "0.1",
       "descriptionLocation": "devices/SF-884/description-0.1.txt",
-      "driverLocation": "devices/SF-884/SF-884-0.1.js",
-      "targetDirectory": "scripts/devices"
+      "inf": "devices/SF-884/SF-884-INF-0.1.json"
     }
   ]
 }
