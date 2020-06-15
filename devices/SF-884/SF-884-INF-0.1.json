@@ -4,14 +4,14 @@
   "config":{
 		"debug": false,
 		"disabled": true,
-		"portName": '?',
+		"portName": "?",
 		"baudRate": 9600,
 		"dataBits": 8,
 		"parity": 0,
 		"stopBits": 1,
 		"delimiters": 0,
 		"convertToHex*": true,
-		"regexp*": '(%d+%.%d+)',
+		"regexp*": "(%d+%.%d+)",
 		"responseLen": 27,
 		"simulate": '1.5',
 		"scripts*": {
@@ -19,10 +19,10 @@
 				"file": "scripts\\devices\\SF-884\\SF-884 init.js"
 			},
 			"onRequest: {
-				"file": "scripts\\devices\\SF-884\\SF-884 init.js"
+				"file": "scripts\\devices\\SF-884\\SF-884 request.js"
 			},
 			"onReceive": {
-				"file": "scripts\\devices\\SF-884\\SF-884 init.js"
+				"file": "scripts\\devices\\SF-884\\SF-884 request.js"
 			}
 		}
 	}
