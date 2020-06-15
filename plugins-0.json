@@ -8,6 +8,14 @@
       "version": "0.1",
       "descriptionLocation": "devices/SF-884/description-0.1.txt",
       "inf": "devices/SF-884/SF-884-INF-0.1.json"
-    }
+    },
+    {
+      "id": "AustraliaPost",
+      "category": "URL",
+      "name": "Australia Post",
+      "version": "0.1",
+      "descriptionLocation": "scripts/Australia Post/description-0.1.txt",
+      "inf": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
+    }    
   ]
 }
