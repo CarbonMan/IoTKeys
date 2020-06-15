@@ -1,0 +1,4 @@
+{
+  "components": ["devices/SF-884/SF-884-0.1.js"]
+  "targetDirectory": "scripts/devices"
+}
