@@ -4,16 +4,16 @@
     ],
     "config": {
         "disabled": false,
-        "name": "Australia Post",
+        "name*": "Australia Post",
         "process": {
             "initialURL": "http://https://auspost.com.au/auth/login",
             "targets": [{
-                    "regexp": "x2=%22prog\\\\symbols\\\\ICM73\\.x2",
+                    "regexp*": "x2=%22prog\\\\symbols\\\\ICM73\\.x2",
                     "parameters": {
                         "scales": "SF-884",
                         "labelPrinter": ""
                     },
-                    "scripts": {
+                    "scripts*": {
                         "body": {
                             "file": "scripts\\Australia Post\\Australia Post-0.1.js"
                         }
