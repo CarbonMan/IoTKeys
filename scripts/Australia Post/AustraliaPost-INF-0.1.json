@@ -11,8 +11,6 @@
                     "id": "Standard parcel",
                     "regexp*": "x2=%22prog\\\\symbols\\\\ICM73\\.x2",
                     "parameters": {
-                        "scales": "SF-884",
-                        "labelPrinter": ""
                     },
                     "scripts*": {
                         "body": {
