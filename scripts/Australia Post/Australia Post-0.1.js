@@ -3,19 +3,24 @@ var iotKeys = {
 },
 processes = [],
 processPtr = 0;
-
+var addOrderActivated;
 // window.onload did not fire
-setTimeout(() => {
-//    setTimeout(() => {
-        document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
-        .addEventListener('focus', () => {
-            console.log("focus");
-            clearAndRead();
-        });
-//    }, 2000);
-//	console.log("onload");
-}, 1500);
-//};
+// Screen is an Angular app so the weight field is not always on the screen.
+setInterval(() => {
+    if (document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")) {
+        if (!addOrderActivated) {
+            console.log("activated");
+            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
+            .addEventListener('focus', () => {
+                console.log("focus");
+                clearAndRead();
+            });
+            addOrderActivated = true;
+        }
+    } else {
+        addOrderActivated = false;
+    }
+}, 1000);
 
 function clearAndRead() {
     iotKeys.reads = [];
