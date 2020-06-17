@@ -4,9 +4,18 @@ var iotKeys = {
 processes = [],
 processPtr = 0;
 
-$(function () {
-    $("#parcelDetailsForm-domestic-parcelDimensionsForm-weight").focus(clearAndRead);
-});
+// window.onload did not fire
+setTimeout(() => {
+//    setTimeout(() => {
+        document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
+        .addEventListener('focus', () => {
+            console.log("focus");
+            clearAndRead();
+        });
+//    }, 2000);
+//	console.log("onload");
+}, 1500);
+//};
 
 function clearAndRead() {
     iotKeys.reads = [];
@@ -79,7 +88,6 @@ this.next = function (deviceId, value) {
 
     document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight").value = nWT;
 }
-
 
 // What devices are available?
 if (parameters.cubic) {
