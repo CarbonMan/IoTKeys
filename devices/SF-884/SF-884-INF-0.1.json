@@ -4,7 +4,8 @@
   ],
   "config":{
 		"debug": false,
-		"disabled": true,
+		"type": "scales",
+      		"disabled": true,
 		"portName": "?",
 		"baudRate": 9600,
 		"dataBits": 8,
