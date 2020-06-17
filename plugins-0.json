@@ -6,8 +6,8 @@
       "name": "SF-884 scales",
       "type": "scales",
       "version": "0.1",
-      "descriptionLocation": "devices/SF-884/description-0.1.txt",
-      "inf": "devices/SF-884/SF-884-INF-0.1.json"
+      "descriptionLocation": "config/devices/SF-884/description-0.1.txt",
+      "inf": "config/devices/SF-884/SF-884-INF-0.1.json"
     },
     {
       "id": "AustraliaPost",
