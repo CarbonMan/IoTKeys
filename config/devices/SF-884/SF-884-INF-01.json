@@ -1,0 +1,33 @@
+{
+    "components": [
+        "config/devices/SF-884/SF-884 init-0.1.js",
+        "config/devices/SF-884/SF-884 request-0.1.js",
+        "config/devices/SF-884/SF-884 response-0.1.js"
+    ],
+    "config": {
+        "debug": true,
+        "breakOnLoad": false,
+        "scripts*": {
+            "onRequest": {
+                "file": "config\\devices\\scales\\SF-884\\SF-884 request-0.1.js"
+            },
+            "onInit": {
+                "file": "config\\devices\\scales\\SF-884\\SF-884 init-0.1.js"
+            },
+            "container": null,
+            "body": null,
+            "onReceive": {
+                "file": "config\\devices\\scales\\SF-884\\SF-884 response-0.1.js"
+            }
+        },
+        "simulate": "1.5",
+        "disabled": false,
+        "parity": 0,
+        "speed": 9600,
+        "baudRate": 9600,
+        "portName": "?",
+        "stopBits": 1,
+        "dataBits": 8,
+        "delimiters": 0
+    }
+}
