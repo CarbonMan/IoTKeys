@@ -6,7 +6,7 @@
         "disabled": false,
         "name*": "Australia Post",
         "process": {
-            "initialURL*": "https://auspost.com.au/auth/login",
+            "initialURL*": "https://auspost.com.au/mypost-business/shipping-and-tracking/orders/add/retail",
             "targets": [{
                     "id": "Standard parcel",
                     "regexp*": "shipping-and-tracking/orders/add/retail",
