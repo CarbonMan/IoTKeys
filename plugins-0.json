@@ -7,7 +7,7 @@
       "type": "scales",
       "version": "0.1",
       "descriptionLocation": "config/devices/SF-884/description-0.1.txt",
-      "inf": "config/devices/SF-884/SF-884-INF-0.1.json"
+      "infLocation": "config/devices/SF-884/SF-884-INF-0.1.json"
     },
     {
       "id": "AustraliaPost",
@@ -15,7 +15,7 @@
       "name": "Australia Post",
       "version": "0.1",
       "descriptionLocation": "scripts/Australia Post/description-0.1.txt",
-      "inf": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
+      "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
     }    
   ]
 }
