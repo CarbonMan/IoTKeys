@@ -9,7 +9,7 @@
             "initialURL*": "http://https://auspost.com.au/auth/login",
             "targets": [{
                     "id": "Standard parcel",
-                    "regexp*": "x2=%22prog\\\\symbols\\\\ICM73\\.x2",
+                    "regexp*": "shipping-and-tracking/orders/add/retail",
                     "parameters": {
                     },
                     "scripts*": {
