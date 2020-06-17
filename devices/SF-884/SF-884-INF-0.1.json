@@ -4,7 +4,6 @@
   ],
   "config":{
 		"debug": false,
-		"type": "scales",
       		"disabled": true,
 		"portName": "?",
 		"baudRate": 9600,
