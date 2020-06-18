@@ -9,7 +9,7 @@
             "initialURL*": "https://auspost.com.au/mypost-business/shipping-and-tracking/orders/add/retail",
             "targets": [{
                     "id": "Standard parcel",
-                    "regexp*": "shipping-and-tracking/orders/add/retail",
+                    "regexp*": "shipping-and-tracking/orders",
                     "parameters": {
                     },
                     "scripts*": {
