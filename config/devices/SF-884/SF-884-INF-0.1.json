@@ -9,15 +9,15 @@
         "breakOnLoad": false,
         "scripts*": {
             "onRequest": {
-                "file": "config\\devices\\scales\\SF-884\\SF-884 request-0.1.js"
+                "file": "config\\devices\\SF-884\\SF-884 request-0.1.js"
             },
             "onInit": {
-                "file": "config\\devices\\scales\\SF-884\\SF-884 init-0.1.js"
+                "file": "config\\devices\\SF-884\\SF-884 init-0.1.js"
             },
             "container": null,
             "body": null,
             "onReceive": {
-                "file": "config\\devices\\scales\\SF-884\\SF-884 response-0.1.js"
+                "file": "config\\devices\\SF-884\\SF-884 response-0.1.js"
             }
         },
         "simulate": "1.5",
