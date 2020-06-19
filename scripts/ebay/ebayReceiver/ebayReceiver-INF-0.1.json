@@ -1,2 +1,9 @@
 {
+    "components": [
+        "scripts/ebay/ebayReceiver/ebayReceiver-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "name*": "Ebay Receiver",
+    }
 }
