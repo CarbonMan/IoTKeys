@@ -5,6 +5,6 @@
     "config": {
         "disabled": false,
         "id": "ebayReceiver",
-        "name*": "Ebay Receiver",
+        "name*": "Ebay Receiver"
     }
 }
