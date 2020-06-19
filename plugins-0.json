@@ -19,7 +19,7 @@
     },
     {
       "id": "EbayReceiver",
-      "category": "Local data",
+      "category": "Script",
       "name": "Receiver details from ebay",
       "version": "0.1",
       "descriptionLocation": "scripts/ebay/ebayReceiver/description-0.1.txt",
