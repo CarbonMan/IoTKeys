@@ -18,7 +18,7 @@
       "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
     },
     {
-      "id": "EbayReceiver",
+      "id": "ebayReceiver",
       "category": "LocalScript",
       "type": "receiverDetails",
       "name": "Receiver details from ebay",
