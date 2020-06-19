@@ -14,6 +14,17 @@ setInterval(() => {
             .addEventListener('focus', () => {
                 console.log("focus");
                 clearAndRead();
+                // Try and load the receiver
+                if (parameters.receiverDetails){
+                    if (Array.isArray(parameters.receiverDetails)){
+                        parameters.receiverDetails.forEach((rd)=>{
+                            rd();
+                        });
+                    }else{
+                        parameters.receiverDetails();
+                    }
+                }
+                
             });
             addOrderActivated = true;
         }
