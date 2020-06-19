@@ -18,10 +18,10 @@ setInterval(() => {
                 if (parameters.receiverDetails){
                     if (Array.isArray(parameters.receiverDetails)){
                         parameters.receiverDetails.forEach((rd)=>{
-                            rd();
+                            T$[rd]();
                         });
                     }else{
-                        parameters.receiverDetails();
+                        T$[parameters.receiverDetails]();
                     }
                 }
                 
