@@ -10,11 +10,11 @@ setInterval(() => {
     if (document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")) {
         if (!addOrderActivated) {
             console.log("activated");
-            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
+            
+            // Try and load the receiver
+            document.getElementById("additionalDetailsForm-domestic-labelInformation")
             .addEventListener('focus', () => {
-                console.log("focus");
-                clearAndRead();
-                // Try and load the receiver
+                console.log("Reference focus");
                 if (parameters.receiverDetails){
                     if (Array.isArray(parameters.receiverDetails)){
                         parameters.receiverDetails.forEach((rd)=>{
@@ -24,8 +24,11 @@ setInterval(() => {
                         T$[parameters.receiverDetails]();
                     }
                 }
-                
             });
+            // Get the weight and cubic
+            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
+            .addEventListener('focus',clearAndRead);
+            
             addOrderActivated = true;
         }
     } else {
