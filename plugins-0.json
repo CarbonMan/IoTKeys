@@ -20,6 +20,7 @@
     {
       "id": "EbayReceiver",
       "category": "LocalScript",
+      "type": "receiverDetails",
       "name": "Receiver details from ebay",
       "version": "0.1",
       "descriptionLocation": "scripts/ebay/ebayReceiver/description-0.1.txt",
