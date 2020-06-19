@@ -16,6 +16,14 @@
       "version": "0.1",
       "descriptionLocation": "scripts/Australia Post/description-0.1.txt",
       "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
-    }    
+    },
+    {
+      "id": "EbayReceiver",
+      "category": "Local data",
+      "name": "Receiver details from ebay",
+      "version": "0.1",
+      "descriptionLocation": "scripts/ebay/ebayReceiver/description-0.1.txt",
+      "infLocation": "scripts/ebay/ebayReceiver/ebayReceiver-INF-0.1.json"
+    }     
   ]
 }
