@@ -105,7 +105,10 @@ this.next = function (deviceId, value) {
         }
     }
 
-    document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight").value = nWT;
+    var wtElm = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
+	angular.element(wtElm).val(nWT);
+	angular.element(wtElm).scope().apply();
+
 }
 
 // What devices are available?
