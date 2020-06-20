@@ -8,8 +8,8 @@
         "id": "ebayReceiver",
         "name*": "Ebay Receiver",
         "location*": "scripts/ebay/ebayReceiver/ebayReceiver-0.1.js",
-        "localLibrary*": {
-            "independent": ["wwwpub/js/papaparse.min.js"]
+        "localLibrary": {
+            "global": ["wwwpub/js/papaparse.min.js"]
         }
     }
 }
