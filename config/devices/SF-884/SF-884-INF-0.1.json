@@ -14,13 +14,14 @@
             "onInit": {
                 "file": "config\\devices\\SF-884\\SF-884 init-0.1.js"
             },
-            "container": null,
-            "body": null,
             "onReceive": {
                 "file": "config\\devices\\SF-884\\SF-884 response-0.1.js"
             }
         },
-        "simulate": "1.5",
+        "convertToHex": true,
+        "simulate*": "1.5",
+        "regexp*": "(%d+%.%d+)",
+        "holdsState": true,
         "disabled": false,
         "parity": 0,
         "speed": 9600,
