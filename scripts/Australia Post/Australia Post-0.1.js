@@ -1,34 +1,36 @@
-var iotKeys = {
-    reads: []
-},
-processes = [],
+var processes = [],
 processPtr = 0;
 var addOrderActivated;
 // window.onload did not fire
 // Screen is an Angular app so the weight field is not always on the screen.
+this.AP_wtElement = this.AP_lenElement = this.AP_widthtElement = this.AP_htElement = null;
 setInterval(() => {
-    if (document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")) {
+    if (!T$.AP_wtElement)
+        T$.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
+    if (T$.AP_wtElement) {
         if (!addOrderActivated) {
             console.log("activated");
-            
+            T$.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
+            T$.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
+            T$.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
+
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
             .addEventListener('focus', () => {
                 console.log("Reference focus");
-                if (parameters.receiverDetails){
-                    if (Array.isArray(parameters.receiverDetails)){
-                        parameters.receiverDetails.forEach((rd)=>{
+                if (parameters.receiverDetails) {
+                    if (Array.isArray(parameters.receiverDetails)) {
+                        parameters.receiverDetails.forEach((rd) => {
                             T$[rd]();
                         });
-                    }else{
+                    } else {
                         T$[parameters.receiverDetails]();
                     }
                 }
             });
             // Get the weight and cubic
-            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
-            .addEventListener('focus',clearAndRead);
-            
+            T$.AP_wtElement.addEventListener('focus', clearAndRead);
+
             addOrderActivated = true;
         }
     } else {
@@ -73,9 +75,15 @@ this.next = function (deviceId, value) {
                 var b = cubic.blobs[0];
                 if (b) {
                     // Values come as mm
-                    document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length").value = nLength = b.length / 1000;
-                    document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width").value = nWidth = b.width / 1000;
-                    document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height").value = nHeight = b.height / 1000;
+                    nLength = b.length / 1000;
+                    angular.element(T$.AP_lenElement).val(nLength)
+                    .scope().apply();
+                    nWidth = b.width / 1000;
+                    angular.element(T$.AP_widthtElement).val(nWidth)
+                    .scope().apply();
+                    nHeight = b.height / 1000;
+                    angular.element(T$.AP_htElement).val(nHeight)
+                    .scope().apply();
                     nItems = 1;
                 }
             }
@@ -92,23 +100,24 @@ this.next = function (deviceId, value) {
             break;
         case "LENGTH":
             nLength = Number(prc.result) / 100;
-            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length").value = nLength;
+            angular.element(T$.AP_lenElement).val(nLength)
+            .scope().apply();
             break;
         case "WIDTH":
             nWidth = Number(prc.result) / 100;
-            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width").value = nWidth;
+            angular.element(T$.AP_widthtElement).val(nWidth)
+            .scope().apply();
             break;
         case "HEIGHT":
             nHeight = Number(prc.result) / 100;
-            document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height").value = nHeight;
+            angular.element(T$.AP_htElement).val(nHeight)
+            .scope().apply();
             break;
         }
     }
 
-    var wtElm = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight")
-	angular.element(wtElm).val(nWT);
-	angular.element(wtElm).scope().apply();
-
+    angular.element(T$.AP_wtElement).val(nWT)
+    .scope().apply();
 }
 
 // What devices are available?
