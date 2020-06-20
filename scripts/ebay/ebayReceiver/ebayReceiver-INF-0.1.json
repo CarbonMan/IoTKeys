@@ -9,7 +9,7 @@
         "name*": "Ebay Receiver",
         "location*": "scripts/ebay/ebayReceiver/ebayReceiver-0.1.js",
         "localLibrary*": {
-            "botInterface": ["wwwpub/js/papaparse.min.js"]
+            "independent": ["wwwpub/js/papaparse.min.js"]
         }
     }
 }
