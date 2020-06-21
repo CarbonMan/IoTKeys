@@ -1,18 +1,18 @@
-var processes = [],
+var processes = [], me = this,
 processPtr = 0;
 var addOrderActivated;
 // window.onload did not fire
 // Screen is an Angular app so the weight field is not always on the screen.
 this.AP_wtElement = this.AP_lenElement = this.AP_widthtElement = this.AP_htElement = null;
 setInterval(() => {
-    if (!T$.AP_wtElement)
-        T$.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
-    if (T$.AP_wtElement) {
+    if (!me.AP_wtElement)
+        me.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
+    if (me.AP_wtElement) {
         if (!addOrderActivated) {
             console.log("activated");
-            T$.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
-            T$.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
-            T$.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
+            me.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
+            me.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
+            me.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
 
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
@@ -22,11 +22,11 @@ setInterval(() => {
 					var order;
                     if (Array.isArray(parameters.orderDetails)) {
                         parameters.orderDetails.find((rd) => {
-                            order = T$[rd](ev.target.value);
+                            order = me[rd](ev.target.value);
 							return order;
                         });
                     } else {
-                        order = T$[parameters.orderDetails](ev.target.value);
+                        order = me[parameters.orderDetails](ev.target.value);
                     }
 					if (order){
 						if (order.getReceiver){
@@ -36,7 +36,7 @@ setInterval(() => {
                 }
             });
             // Get the weight and cubic
-            T$.AP_wtElement.addEventListener('focus', clearAndRead);
+            me.AP_wtElement.addEventListener('focus', clearAndRead);
 
             addOrderActivated = true;
         }
@@ -83,13 +83,13 @@ this.next = function (deviceId, value) {
                 if (b) {
                     // Values come as mm
                     nLength = b.length / 1000;
-                    angular.element(T$.AP_lenElement).val(nLength)
+                    angular.element(me.AP_lenElement).val(nLength)
                     .scope().apply();
                     nWidth = b.width / 1000;
-                    angular.element(T$.AP_widthtElement).val(nWidth)
+                    angular.element(me.AP_widthtElement).val(nWidth)
                     .scope().apply();
                     nHeight = b.height / 1000;
-                    angular.element(T$.AP_htElement).val(nHeight)
+                    angular.element(me.AP_htElement).val(nHeight)
                     .scope().apply();
                     nItems = 1;
                 }
@@ -107,23 +107,23 @@ this.next = function (deviceId, value) {
             break;
         case "LENGTH":
             nLength = Number(prc.result) / 100;
-            angular.element(T$.AP_lenElement).val(nLength)
+            angular.element(me.AP_lenElement).val(nLength)
             .scope().apply();
             break;
         case "WIDTH":
             nWidth = Number(prc.result) / 100;
-            angular.element(T$.AP_widthtElement).val(nWidth)
+            angular.element(me.AP_widthtElement).val(nWidth)
             .scope().apply();
             break;
         case "HEIGHT":
             nHeight = Number(prc.result) / 100;
-            angular.element(T$.AP_htElement).val(nHeight)
+            angular.element(me.AP_htElement).val(nHeight)
             .scope().apply();
             break;
         }
     }
 
-    angular.element(T$.AP_wtElement).val(nWT)
+    angular.element(me.AP_wtElement).val(nWT)
     .scope().apply();
 }
 
