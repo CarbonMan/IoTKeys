@@ -1,0 +1,15 @@
+{
+    "components": [
+        "scripts/ebay/ebayOrder/ebayOrder-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "type": "receiverDetails",
+        "id": "ebayReceiver",
+        "name*": "Ebay Receiver",
+        "location*": "scripts/ebay/ebayOrder/ebayOrder-0.1.js",
+        "localLibrary": {
+            "global": ["wwwpub/js/papaparse.min.js"]
+        }
+    }
+}
