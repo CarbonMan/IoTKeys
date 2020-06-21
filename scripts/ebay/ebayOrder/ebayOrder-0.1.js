@@ -11,7 +11,7 @@ if (ebayOrdersCSV) {
 }
 this.ebayOrder = function (orderNumber) {
     // 22-05196-87110
-    var order = ebayOrders.find((order) => {
+    var order = ebayOrders.data.find((order) => {
         return order[1] == orderNumber;
     });
 	if (order)
