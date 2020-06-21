@@ -16,16 +16,23 @@ setInterval(() => {
 
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
-            .addEventListener('focus', () => {
+            .addEventListener('change', (ev) => {
                 console.log("Reference focus");
-                if (parameters.receiverDetails) {
-                    if (Array.isArray(parameters.receiverDetails)) {
-                        parameters.receiverDetails.forEach((rd) => {
-                            T$[rd]();
+                if (parameters.orderDetails) {
+					var order;
+                    if (Array.isArray(parameters.orderDetails)) {
+                        parameters.orderDetails.find((rd) => {
+                            order = T$[rd].load(ev.target.value);
+							return order;
                         });
                     } else {
-                        T$[parameters.receiverDetails]();
+                        order = T$[parameters.orderDetails].load(ev.target.value);
                     }
+					if (order){
+						if (order.getReceiver){
+							var r = order.getReceiver();
+						}
+					}
                 }
             });
             // Get the weight and cubic
