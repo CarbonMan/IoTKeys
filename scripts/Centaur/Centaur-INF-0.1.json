@@ -22,7 +22,7 @@
           		"regexp": "x2=%22prog\\\\symbols\\\\ICP33\\.x2",
           		"parameters": {
 			},
-          		"scripts": {
+          		"scripts*": {
 				"body": {
 					"file": "scripts/Centaur/inbound-0.1.js"
 				}
