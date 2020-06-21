@@ -13,26 +13,34 @@ setInterval(() => {
             me.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
             me.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
             me.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
+            me.AP_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
+            me.AP_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
+            me.AP_ReceiverCountry = document.getElementById("recipientDetailsForm-country-select");
 
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
             .addEventListener('change', (ev) => {
                 console.log("Reference focus");
                 if (parameters.orderDetails) {
-					var order;
+                    var order;
                     if (Array.isArray(parameters.orderDetails)) {
                         parameters.orderDetails.find((rd) => {
                             order = me[rd](ev.target.value);
-							return order;
+                            return order;
                         });
                     } else {
                         order = me[parameters.orderDetails](ev.target.value);
                     }
-					if (order){
-						if (order.getReceiver){
-							var r = order.getReceiver();
-						}
-					}
+                    if (order) {
+                        if (order.getReceiver) {
+                            var r = order.getReceiver();
+                            var address = r.address1 + "," +
+                                (r.address2 ? r.address + "," : "") +
+                                r.city + " " + r.state + " " + r.postalCode;
+                            angular.element(me.AP_ReceiverAddress).val(address)
+                            .scope().apply();
+                        }
+                    }
                 }
             });
             // Get the weight and cubic
