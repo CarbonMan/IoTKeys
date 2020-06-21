@@ -1,0 +1,35 @@
+{
+    "components": [
+        "scripts/Centaur/Centaur-0.1.js",
+        "scripts/Centaur/inbound-0.1.js",
+        "scripts/Centaur/Centaur batched with cubist interface-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "name*": "Centaur",
+        "process": {
+            "initialURL": "http://demo.laberg.com.au/common/foxisapi.dll/intracargo.x2.login",
+            "targets": [{
+                    "id": "Standard parcel",
+                    "regexp*": "x2=%22prog\\\\symbols\\\\ICM73\\.x2",
+                    "parameters": {
+                    },
+                    "scripts*": {
+                        "body": {
+                            "file": "scripts/Centaur/Centaur batched with cubist interface-0.1.js"
+                        }
+                    }
+                },{
+          					regexp: 'x2=%22prog\\\\symbols\\\\ICP33\\.x2',
+          					parameters: {
+					          },
+          					scripts: {
+					          	body: {
+							          file: "scripts/Centaur/inbound-0.1.js"
+						          }
+					          }
+				        }
+            ]
+        }
+    }
+}
