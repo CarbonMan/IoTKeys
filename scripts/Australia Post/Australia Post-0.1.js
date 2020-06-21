@@ -22,11 +22,11 @@ setInterval(() => {
 					var order;
                     if (Array.isArray(parameters.orderDetails)) {
                         parameters.orderDetails.find((rd) => {
-                            order = T$[rd].load(ev.target.value);
+                            order = T$[rd](ev.target.value);
 							return order;
                         });
                     } else {
-                        order = T$[parameters.orderDetails].load(ev.target.value);
+                        order = T$[parameters.orderDetails](ev.target.value);
                     }
 					if (order){
 						if (order.getReceiver){
