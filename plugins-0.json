@@ -20,11 +20,11 @@
     {
       "id": "ebayReceiver",
       "category": "LocalScript",
-      "type": "receiverDetails",
-      "name": "Receiver details from ebay",
+      "type": "orderDetails",
+      "name": "Order details from ebay",
       "version": "0.1",
-      "descriptionLocation": "scripts/ebay/ebayReceiver/description-0.1.txt",
-      "infLocation": "scripts/ebay/ebayReceiver/ebayReceiver-INF-0.1.json"
+      "descriptionLocation": "scripts/ebay/ebayOrder/description-0.1.txt",
+      "infLocation": "scripts/ebay/ebayOrder/ebayOrder-INF-0.1.json"
     }     
   ]
 }
