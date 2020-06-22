@@ -13,15 +13,20 @@ setInterval(() => {
             me.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
             me.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
             me.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
-            me.AP_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
-            me.AP_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
             me.AP_ReceiverCountry = document.getElementById("recipientDetailsForm-country-select");
+			
+			me.AP_ReceiverPhone = document.getElementById("recipientDetailsForm-phone");
+			var angRphone = angular.element(me.AP_ReceiverPhone);
+            me.AP_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
+			var angRname = angular.element(me.AP_ReceiverName);
+            me.AP_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
+			var angRcvr = angular.element(me.AP_ReceiverAddress);
 
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
             .addEventListener('change', (ev) => {
                 console.log("Reference focus");
-                if (parameters.orderDetails) {
+                if (ev.target.value && parameters.orderDetails) {
                     var order;
                     if (Array.isArray(parameters.orderDetails)) {
                         parameters.orderDetails.find((rd) => {
@@ -35,10 +40,12 @@ setInterval(() => {
                         if (order.getReceiver) {
                             var r = order.getReceiver();
                             var address = r.address1 + "," +
-                                (r.address2 ? r.address + "," : "") +
+                                (r.address2 ? r.address2 + "," : "") +
                                 r.city + " " + r.state + " " + r.postalCode;
-                            angular.element(me.AP_ReceiverAddress).val(address)
-                            .scope().apply();
+                            angRcvr.val(address.toUpperCase());
+							angRname.val(r.name);
+							angRphone.val(r.phone);
+                            angRcvr.scope().$apply();
                         }
                     }
                 }
@@ -54,7 +61,6 @@ setInterval(() => {
 }, 1000);
 
 function clearAndRead() {
-    iotKeys.reads = [];
     processPtr = 0;
     console.log("Request to " + processes[processPtr].id);
     host.getValueFromDevice(processes[processPtr].id, "next");
@@ -131,8 +137,8 @@ this.next = function (deviceId, value) {
         }
     }
 
-    angular.element(me.AP_wtElement).val(nWT)
-    .scope().apply();
+    angular.element(me.AP_wtElement).val(nWT);
+    angular.element(me.AP_wtElement).scope().$apply();
 }
 
 // What devices are available?
