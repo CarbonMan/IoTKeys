@@ -28,6 +28,7 @@ this.ebayOrder = function (orderNumber) {
     else
         return null;
     function EbayOrder(order) {
+		// No sender is recorded in an ebay order
         this.getReceiver = function () {
 			// Convert from a state name to an abbreviation
 			var state = states.data.find((s)=>{
