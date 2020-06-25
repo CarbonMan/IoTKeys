@@ -26,6 +26,14 @@
       "infLocation": "scripts/Centaur/Centaur-INF-0.1.json"
     },
     {
+      "id": "Centaur",
+      "category": "URL",
+      "name": "Centaur MMS",
+      "version": "0.1",
+      "descriptionLocation": "scripts/csvInventory/description-0.1.txt",
+      "infLocation": "scripts/csvInventory/csvInventory-INF-0.1.json"
+    },
+    {
       "id": "ebayOrder",
       "category": "LocalScript",
       "type": "orderDetails",
