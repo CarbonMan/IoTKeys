@@ -1,0 +1,1 @@
+Maintains a inventory system and tracks outbound stock movements.
