@@ -1,0 +1,15 @@
+{
+    "components": [
+        "scripts/csvInventory/csvInventory-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "type": "inventory",
+        "id": "csvInventory",
+        "name*": "CSV",
+        "location*": "scripts/csvInventory/csvInventory-0.1.js",
+        "localLibrary": {
+            "global": ["wwwpub/js/papaparse.min.js"]
+        }
+    }
+}
