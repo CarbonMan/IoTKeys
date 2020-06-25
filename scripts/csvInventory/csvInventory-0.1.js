@@ -52,11 +52,13 @@ function csvInventory() {
         if (!locations.length) {
             inventory.push({
                 sku: options.sku,
+				location: "unknown",
                 qty: -options.qty
             });
             orderHistory.push({
                 date: formatDate(),
                 order: options.order,
+				location: "unknown",
                 sku: options.sku,
                 qty: options.qty
             });
