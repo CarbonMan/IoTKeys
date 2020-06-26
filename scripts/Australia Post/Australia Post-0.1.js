@@ -6,12 +6,26 @@ var addOrderActivated;
 this.AP_wtElement = this.AP_lenElement = this.AP_widthtElement = this.AP_htElement = null;
 me.AP_bookingReference = "";
 me.AP_currentOrder = null;
+me.AP_inventory = null;
+me.AP_saveBtn = null;
 setInterval(() => {
     if (!me.AP_wtElement) {
         me.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
     }
+    if (!me.AP_saveBtn) {
+        me.AP_saveBtn = document.querySelector(".ship-selected.primary-button.ng-scope");
+        if (me.AP_saveBtn) {
+            me.AP_saveBtn.addEventListener("click", () => {
+                if (me.AP_inventory) {
+                    me.AP_inventory.save();
+                }
+            });
+        }
+    }
+
     if (me.AP_wtElement) {
         if (!addOrderActivated) {
+            addOrderActivated = true;
             var hyper = document.querySelectorAll(".switch-view-button.primary-link");
             hyper.forEach((btn) => {
                 btn.click();
@@ -37,7 +51,7 @@ setInterval(() => {
             .addEventListener('change', (ev) => {
                 console.log("Reference focus");
                 if (ev.target.value) {
-					me.AP_bookingReference = ev.target.value;
+                    me.AP_bookingReference = ev.target.value;
                     clearAndRead();
                     if (parameters.orderDetails) {
                         var order;
@@ -49,7 +63,7 @@ setInterval(() => {
                         } else {
                             order = me[parameters.orderDetails](ev.target.value);
                         }
-						me.AP_currentOrder = order;
+                        me.AP_currentOrder = order;
                         if (order) {
                             var customEvent = new Event("change");
                             if (order.getSender) {
@@ -118,23 +132,28 @@ setInterval(() => {
             });
             // Get the weight and cubic
             me.AP_wtElement.addEventListener('focus', clearAndRead);
-			
-			// Inventory processing
-			document.querySelector(".primary-button.save-order-button")
-			.addEventListener("click", ()=>{
-				if (parameters.inventory) {
-					var inventory = me[parameters.inventory]();
-					me.AP_currentOrder.items.forEach((item)=>{
-						inventory.removeFromInventory({
-							sku: item.sku,
-							qty: item.qty,
-							order: me.AP_bookingReference
-						});
-					});
-				}
-			}, false);
 
-            addOrderActivated = true;
+            // Inventory processing
+            document.querySelector(".primary-button.save-order-button")
+            .addEventListener("click", () => {
+                if (parameters.inventory) {
+                    if (!me.AP_inventory) {
+						try{
+							me.AP_inventory = me[parameters.inventory]();
+						}catch(e){
+							console.error(e);
+							return;
+						}
+                    }
+                    me.AP_currentOrder.items.forEach((item) => {
+                        me.AP_inventory.removeFromInventory({
+                            sku: item.sku,
+                            qty: item.qty,
+                            order: me.AP_bookingReference
+                        });
+                    });
+                }
+            }, false);
         }
     } else {
         addOrderActivated = false;
