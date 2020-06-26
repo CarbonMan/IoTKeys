@@ -6,7 +6,7 @@ function csvInventory() {
     var inventory = [],
     inventoryStr = host.getInputFileContents("data/inventory.csv");
     if (!inventoryStr) {
-        inventoryStr = "sku, description, location, supplier, qty";
+        inventoryStr = "sku,description,location,supplier,qty";
     }
     inventory = Papa.parse(inventoryStr, {
             header: true
@@ -14,7 +14,7 @@ function csvInventory() {
     var orderHistory = [],
     orderHistoryStr = host.getInputFileContents("data/orderHistory.csv");
     if (!orderHistoryStr) {
-        orderHistoryStr = "date, order, sku, location, qty";
+        orderHistoryStr = "date,order,sku,location,qty";
     }
     orderHistory = Papa.parse(orderHistoryStr, {
             header: true
@@ -70,8 +70,8 @@ function csvInventory() {
         var csv = Papa.unparse(orderHistory);
         host.strToFile(csv, "data/orderHistory.csv");
     };
-    function formatDate(date) {
-        var d = new Date(date),
+    function formatDate() {
+        var d = new Date(),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
