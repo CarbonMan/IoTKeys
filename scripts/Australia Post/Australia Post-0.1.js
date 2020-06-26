@@ -4,6 +4,8 @@ var addOrderActivated;
 // window.onload did not fire
 // Screen is an Angular app so the weight field is not always on the screen.
 this.AP_wtElement = this.AP_lenElement = this.AP_widthtElement = this.AP_htElement = null;
+me.AP_bookingReference = "";
+me.AP_currentOrder = null;
 setInterval(() => {
     if (!me.AP_wtElement) {
         me.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
@@ -35,6 +37,7 @@ setInterval(() => {
             .addEventListener('change', (ev) => {
                 console.log("Reference focus");
                 if (ev.target.value) {
+					me.AP_bookingReference = ev.target.value;
                     clearAndRead();
                     if (parameters.orderDetails) {
                         var order;
@@ -46,6 +49,7 @@ setInterval(() => {
                         } else {
                             order = me[parameters.orderDetails](ev.target.value);
                         }
+						me.AP_currentOrder = order;
                         if (order) {
                             var customEvent = new Event("change");
                             if (order.getSender) {
@@ -108,6 +112,21 @@ setInterval(() => {
             });
             // Get the weight and cubic
             me.AP_wtElement.addEventListener('focus', clearAndRead);
+			
+			// Inventory processing
+			document.querySelector(".primary-button.save-order-button")
+			.addEventListener("click", ()=>{
+				if (parameters.inventory) {
+					var inventory = me[parameters.inventory]();
+					me.AP_currentOrder.items.forEach((item)=>{
+						inventory.removeFromInventory({
+							sku: item.sku,
+							qty: item.qty,
+							order: me.AP_bookingReference
+						});
+					});
+				}
+			}, false);
 
             addOrderActivated = true;
         }
