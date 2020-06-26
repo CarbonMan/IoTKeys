@@ -102,8 +102,14 @@ setInterval(() => {
                                 rPostElm.value = r.postalCode;
                                 rPostElm.dispatchEvent(customEvent);
 
-                                angRname.val(r.name);
-                                angRphone.val(r.phone);
+                                //angRname.val(r.name);
+                                var elm = document.getElementById("recipientDetailsForm-name-typeahead-input");
+                                elm.value = r.name;
+                                elm.dispatchEvent(customEvent);
+                                //angRphone.val(r.phone);
+                                var elm = document.getElementById("recipientDetailsForm-phone");
+                                elm.value = r.phone;
+                                elm.dispatchEvent(customEvent);
                                 //$scope.$apply();
                             }
                         }
@@ -219,10 +225,6 @@ this.next = function (deviceId, value) {
             break;
         }
     }
-    debugger;
-    //angular.element(me.AP_wtElement).val(nWT);
-    //ctrl = me.AP_$scope.$ctrl;
-    //ctrl.weight = nWT;
     me.AP_$scope.$apply();
 }
 
