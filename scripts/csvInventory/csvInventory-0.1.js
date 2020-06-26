@@ -1,6 +1,5 @@
-this.removeFromInventory = function (options) {
-    var inv = new csvInventory();
-    inv.removeFromInventory(options);
+this.csvInventory = function (options) {
+    return new csvInventory();
 };
 
 function csvInventory() {
