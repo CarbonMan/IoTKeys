@@ -4,7 +4,13 @@ this.csvInventory = function (options) {
 
 function csvInventory() {
     var inventory = [],
-    inventoryStr = host.getInputFileContents("data/inventory.csv");
+    inventoryStr;
+    try {
+        inventoryStr = host.getInputFileContents("data/inventory.csv");
+    } catch (e) {
+        alert("inventory.csv is in use. Resolve and then restart this screen.\nData corruption may occur");
+		throw new Error("Unable to access inventory.csv");
+    }
     if (!inventoryStr) {
         inventoryStr = "sku,description,location,supplier,qty";
     }
@@ -12,7 +18,13 @@ function csvInventory() {
             header: true
         });
     var orderHistory = [],
-    orderHistoryStr = host.getInputFileContents("data/orderHistory.csv");
+    orderHistoryStr;
+    try {
+        orderHistoryStr = host.getInputFileContents("data/orderHistory.csv");
+    } catch (e) {
+        alert("orderHistory.csv is in use. Resolve and then restart this screen.\nData corruption may occur");
+		throw new Error("Unable to access orderHistory.csv");
+    }
     if (!orderHistoryStr) {
         orderHistoryStr = "date,order,sku,location,qty";
     }
@@ -51,18 +63,18 @@ function csvInventory() {
         if (!locations.length) {
             inventory.data.push({
                 sku: options.sku,
-				location: "unknown",
+                location: "unknown",
                 qty: -options.qty
             });
             orderHistory.data.push({
                 date: formatDate(),
                 order: options.order,
-				location: "unknown",
+                location: "unknown",
                 sku: options.sku,
                 qty: options.qty
             });
         }
-        this.save();
+        //this.save();
     };
     this.save = function () {
         var csv = Papa.unparse(inventory);
