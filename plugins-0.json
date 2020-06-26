@@ -29,6 +29,7 @@
       "id": "csvInventory",
       "category": "LocalScript",
       "name": "CSV inventory",
+      "type": "inventory",
       "version": "0.1",
       "descriptionLocation": "scripts/csvInventory/description-0.1.txt",
       "infLocation": "scripts/csvInventory/csvInventory-INF-0.1.json"
