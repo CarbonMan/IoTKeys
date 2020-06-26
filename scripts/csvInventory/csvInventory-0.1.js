@@ -22,7 +22,7 @@ function csvInventory() {
     this.removeFromInventory = function (options) {
         // order, sku, quantity
         var locations = [];
-        inventory.forEach((i) => {
+        inventory.data.forEach((i) => {
             if (i.sku == options.sku && i.qty > 0) {
                 locations.push(i);
             }
@@ -45,16 +45,16 @@ function csvInventory() {
                     history.qty = -i.qty;
                     remaining -= i.qty;
                 }
-                orderHistory.push(history);
+                orderHistory.data.push(history);
             }
         });
         if (!locations.length) {
-            inventory.push({
+            inventory.data.push({
                 sku: options.sku,
 				location: "unknown",
                 qty: -options.qty
             });
-            orderHistory.push({
+            orderHistory.data.push({
                 date: formatDate(),
                 order: options.order,
 				location: "unknown",
