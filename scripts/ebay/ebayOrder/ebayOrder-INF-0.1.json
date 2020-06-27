@@ -1,6 +1,7 @@
 {
     "components": [
-        "scripts/ebay/ebayOrder/ebayOrder-0.1.js"
+        "scripts/ebay/ebayOrder/ebayOrder-0.1.js",
+        "data/country.csv"
     ],
     "config": {
         "disabled": false,
