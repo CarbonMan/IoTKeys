@@ -1,4 +1,4 @@
-console.log("Ebay receiver loaded");
+console.log("wooCommerce loaded");
 var states = [], statesCSV = host.getInputFileContents("data/states.csv");
 if (statesCSV) {
     setTimeout(() => {
@@ -6,7 +6,7 @@ if (statesCSV) {
         states = Papa.parse(statesCSV);
     }, 0);
 }
-var ebayOrdersCSV = host.getInputFileContents("data/ebayOrders.csv");
+var ebayOrdersCSV = host.getInputFileContents("data/wooCommerce.csv");
 var ebayOrders = [];
 if (ebayOrdersCSV) {
     setTimeout(() => {
