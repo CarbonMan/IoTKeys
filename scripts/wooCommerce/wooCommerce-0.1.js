@@ -6,28 +6,28 @@ if (statesCSV) {
         states = Papa.parse(statesCSV);
     }, 0);
 }
-var ebayOrdersCSV = host.getInputFileContents("data/wooCommerce.csv");
-var ebayOrders = [];
-if (ebayOrdersCSV) {
+var wooCommerceOrdersCSV = host.getInputFileContents("data/wooCommerce.csv");
+var wooCommerceOrders = [];
+if (wooCommerceOrdersCSV) {
     setTimeout(() => {
         // PapaParse has to load
-        ebayOrders = Papa.parse(ebayOrdersCSV, {
+        wooCommerceOrders = Papa.parse(wooCommerceOrdersCSV, {
                 skipEmptyLines: true
             });
     }, 0);
 }
-this.ebayOrder = function (orderNumber) {
+this.wooCommerceOrder = function (orderNumber) {
     // 22-05196-87110
     if (!orderNumber)
         return null;
-    var orders = ebayOrders.data.filter(order => {
+    var orders = wooCommerceOrders.data.filter(order => {
             return order[1] == orderNumber;
         });
     if (orders.length)
-        return new EbayOrder(orders);
+        return new wooCommerceOrder(orders);
     else
         return null;
-    function EbayOrder(orders) {
+    function wooCommerceOrder(orders) {
         // No sender is recorded in an ebay order
         var details = orders[0];
         this.items = [];
