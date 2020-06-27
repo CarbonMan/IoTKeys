@@ -42,6 +42,15 @@
       "version": "0.1",
       "descriptionLocation": "scripts/ebay/ebayOrder/description-0.1.txt",
       "infLocation": "scripts/ebay/ebayOrder/ebayOrder-INF-0.1.json"
-    }     
+    },
+    {
+      "id": "wooCommerceOrder",
+      "category": "LocalScript",
+      "type": "orderDetails",
+      "name": "Order details from wooCommerce",
+      "version": "0.1",
+      "descriptionLocation": "scripts/wooCommerce/description-0.1.txt",
+      "infLocation": "scripts/wooCommerce/wooCommerce-INF-0.1.json"
+    }      
   ]
 }
