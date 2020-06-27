@@ -1,6 +1,7 @@
 {
     "components": [
-        "scripts/wooCommerce/wooCommerce-0.1.js"
+        "scripts/wooCommerce/wooCommerce-0.1.js",
+        "data/country.csv"
     ],
     "config": {
         "disabled": false,
