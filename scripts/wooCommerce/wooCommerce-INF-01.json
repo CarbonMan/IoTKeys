@@ -1,0 +1,15 @@
+{
+    "components": [
+        "scripts/wooCommerce/wooCommerce-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "type": "receiverDetails",
+        "id": "wooCommerce",
+        "name*": "wooCommerce orders",
+        "location*": "scripts/wooCommerce/wooCommerce-0.1.js",
+        "localLibrary": {
+            "global": ["wwwpub/js/papaparse.min.js"]
+        }
+    }
+}
