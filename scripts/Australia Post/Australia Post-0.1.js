@@ -57,11 +57,17 @@ setInterval(() => {
                         var order;
                         if (Array.isArray(parameters.orderDetails)) {
                             parameters.orderDetails.find((rd) => {
-                                order = me[rd](ev.target.value);
+                                order = me[rd]({
+                                        parameters: parameters,
+                                        orderNumber: ev.target.value
+                                    });
                                 return order;
                             });
                         } else {
-                            order = me[parameters.orderDetails](ev.target.value);
+                            order = me[parameters.orderDetails]({
+                                    parameters: parameters,
+                                    orderNumber: ev.target.value
+                                });
                         }
                         me.AP_currentOrder = order;
                         if (order) {
@@ -138,12 +144,12 @@ setInterval(() => {
             .addEventListener("click", () => {
                 if (parameters.inventory) {
                     if (!me.AP_inventory) {
-						try{
-							me.AP_inventory = me[parameters.inventory]();
-						}catch(e){
-							console.error(e);
-							return;
-						}
+                        try {
+                            me.AP_inventory = me[parameters.inventory]();
+                        } catch (e) {
+                            console.error(e);
+                            return;
+                        }
                     }
                     me.AP_currentOrder.items.forEach((item) => {
                         me.AP_inventory.removeFromInventory({
