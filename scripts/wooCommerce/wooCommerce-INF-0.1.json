@@ -9,6 +9,9 @@
         "id": "wooCommerce",
         "name*": "wooCommerce orders",
         "location*": "scripts/wooCommerce/wooCommerce-0.1.js",
-        "localLibrary": {}
+        "localLibrary": {
+        "global": [
+            "scripts/regions-0.1.js"
+        ]}
     }
 }
