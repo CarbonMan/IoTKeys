@@ -34,9 +34,10 @@ this.wooCommerceOrder = function (options) {
                 address1: order.shipping_address,
                 /* address2: order[15], */
                 city: order.shipping_city,
-                state: order.shipping_state,
+                stateCode: order.shipping_state,
                 postalCode: order.shipping_postcode,
-                country: (country ? country.name : order.shipping_country)
+                countryName: (country ? country.name : order.shipping_country),
+                countryCode: (country ? country.code : order.shipping_country)
             };
         };
     }
