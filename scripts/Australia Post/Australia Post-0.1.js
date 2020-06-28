@@ -88,7 +88,7 @@ setInterval(() => {
                                 sSuburbElm.value = s.city;
                                 sSuburbElm.dispatchEvent(customEvent);
                                 var sStateElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-state");
-                                sStateElm.value = "string:" + s.state;
+                                sStateElm.value = "string:" + s.stateCode;
                                 sStateElm.dispatchEvent(customEvent);
                                 var sPostElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-postcode");
                                 sPostElm.value = s.postalCode;
@@ -116,7 +116,7 @@ setInterval(() => {
                                 rSuburbElm.value = r.city;
                                 rSuburbElm.dispatchEvent(customEvent);
                                 var rStateElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-state");
-                                rStateElm.value = "string:" + r.state;
+                                rStateElm.value = "string:" + r.stateCode;
                                 rStateElm.dispatchEvent(customEvent);
                                 var rPostElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-postcode");
                                 rPostElm.value = r.postalCode;
