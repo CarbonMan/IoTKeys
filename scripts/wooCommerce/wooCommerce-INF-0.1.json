@@ -14,7 +14,7 @@
                 "wwwpub/js/papaparse.min.js"
             ],
             "body": [
-                "scripts/regions-0.1.js",
+                "scripts/regions-0.1.js"
             ]
         }
     }
