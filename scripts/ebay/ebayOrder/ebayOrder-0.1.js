@@ -1,11 +1,4 @@
 console.log("Ebay receiver loaded");
-var states = [], statesCSV = host.getInputFileContents("data/states.csv");
-if (statesCSV) {
-    setTimeout(() => {
-        // PapaParse has to load
-        states = Papa.parse(statesCSV);
-    }, 0);
-}
 var ebayOrdersCSV = host.getInputFileContents("data/ebayOrders.csv");
 var ebayOrders = [];
 if (ebayOrdersCSV) {
@@ -16,8 +9,13 @@ if (ebayOrdersCSV) {
             });
     }, 0);
 }
-this.ebayOrder = function (orderNumber) {
+this.ebayOrder = function (options) {
     // 22-05196-87110
+    var orderNumber = options.orderNumber;
+
+    var country = {};
+    var libUrl = options.parameters.libraryUrl;
+
     if (!orderNumber)
         return null;
     var orders = ebayOrders.data.filter(order => {
@@ -42,19 +40,20 @@ this.ebayOrder = function (orderNumber) {
             }
         });
         this.getReceiver = function () {
-            // Convert from a state name to an abbreviation
-            var state = states.data.find((s) => {
-                    return s[0] == details[17].toUpperCase();
-                });
+			var state, country = me.regions.getCountry(details[19]);
+			if (country)
+				state = country.getState(details[17]);
             return {
                 name: details[12],
                 phone: details[13],
                 address1: details[15],
                 /* address2: order[15], */
                 city: details[16],
-                state: state[1],
+                stateCode: (state ? state.code, details[17]),
+                stateName: (state ? state.code, details[17]),
                 postalCode: details[18],
-                country: details[19]
+                countryCode: (country ? country.code : details[19]),
+                countryName: (country ? country.name : details[19])
             };
         };
     }
