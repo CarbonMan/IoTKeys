@@ -8,9 +8,11 @@ this.regions = new function () {
         }
     }
     if (countryCSV) {
-        this.country = Papa.parse(countryCSV, {
-                header: true
-            });
+        setTimeout(() => {
+            this.country = Papa.parse(countryCSV, {
+                    header: true
+                });
+        }, 0);
     }
     this.getCountry = function (cCode) {
         var country = this.country.find((c, i) => {
@@ -28,8 +30,8 @@ this.regions = new function () {
         return country;
     };
     function Country(options) {
-		this.name = options.name;
-		this.code = options.code;
+        this.name = options.name;
+        this.code = options.code;
         this.states = [];
         //this.countryCode = countryCode;
         this.getState = function (state) {
@@ -50,7 +52,7 @@ this.regions = new function () {
             var state = this.states.find((s) => {
                     return (s.name == state.toUpperCase() || s.code == state.toUpperCase());
                 });
-			return state;
+            return state;
         };
     }
     /*
