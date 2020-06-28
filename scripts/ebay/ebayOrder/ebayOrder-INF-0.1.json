@@ -10,7 +10,10 @@
         "name*": "Ebay Receiver",
         "location*": "scripts/ebay/ebayOrder/ebayOrder-0.1.js",
         "localLibrary": {
-            "global": ["wwwpub/js/papaparse.min.js"]
+            "global": [
+                "scripts/regions-0.1.js",
+                "wwwpub/js/papaparse.min.js"
+            ]
         }
     }
 }
