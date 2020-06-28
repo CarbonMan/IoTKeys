@@ -50,7 +50,7 @@ this.ebayOrder = function (options) {
                 /* address2: order[15], */
                 city: details[16],
                 stateCode: (state ? state.code: details[17]),
-                stateName: (state ? state.code: details[17]),
+                stateName: (state ? state.name: details[17]),
                 postalCode: details[18],
                 countryCode: (country ? country.code : details[19]),
                 countryName: (country ? country.name : details[19])
