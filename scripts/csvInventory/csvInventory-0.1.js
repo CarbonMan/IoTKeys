@@ -74,7 +74,6 @@ function csvInventory() {
                 qty: options.qty
             });
         }
-        //this.save();
     };
     this.save = function () {
         var csv = Papa.unparse(inventory);
