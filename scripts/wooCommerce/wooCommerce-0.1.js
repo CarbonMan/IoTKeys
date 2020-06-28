@@ -1,60 +1,48 @@
 console.log("wooCommerce loaded");
-var states = [], statesCSV = host.getInputFileContents("data/states.csv");
-if (statesCSV) {
+var country = [], countryCSV = host.getInputFileContents("data/country.csv");
+if (countryCSV) {
     setTimeout(() => {
         // PapaParse has to load
-        states = Papa.parse(statesCSV);
+        country = Papa.parse(countryCSV);
     }, 0);
-}
-var wooCommerceOrdersCSV = host.getInputFileContents("data/wooCommerce.csv");
+}var wooCommerceOrdersStr = host.getInputFileContents("data/wooCommerce.json");
 var wooCommerceOrders = [];
-if (wooCommerceOrdersCSV) {
-    setTimeout(() => {
-        // PapaParse has to load
-        wooCommerceOrders = Papa.parse(wooCommerceOrdersCSV, {
-                skipEmptyLines: true
-            });
-    }, 0);
+if (wooCommerceOrdersStr) {
+	wooCommerceOrders = JSON.parse(wooCommerceOrdersStr);
 }
-this.wooCommerceOrder = function (orderNumber) {
-    // 22-05196-87110
+this.wooCommerceOrder = function (options) {
+    // 50615
+	var orderNumber = options.orderNumber;
     if (!orderNumber)
         return null;
-    var orders = wooCommerceOrders.data.filter(order => {
-            return order[1] == orderNumber;
+    var order = wooCommerceOrders.find(o => {
+            return o.order_number == orderNumber;
         });
-    if (orders.length)
-        return new wooCommerceOrder(orders);
+    if (order)
+        return new wooCommerceOrder(order);
     else
         return null;
-    function wooCommerceOrder(orders) {
+    function wooCommerceOrder(order) {
         // No sender is recorded in an ebay order
-        var details = orders[0];
         this.items = [];
-        orders.forEach(item => {
-            if (item[20]) {
-                // ebay multiline orders have a summary line with no item detail
+        order.products.forEach(p => {
                 this.items.push({
-                    sku: item[20],
-                    description: item[21],
-                    qty: item[24]
+                    sku: p.sku,
+                    description: p.name,
+                    qty: p.qty
                 });
-            }
         });
         this.getReceiver = function () {
-            // Convert from a state name to an abbreviation
-            var state = states.data.find((s) => {
-                    return s[0] == details[17].toUpperCase();
-                });
+			var country = me.regions.getCountry(order.shipping_country);
             return {
-                name: details[12],
-                phone: details[13],
-                address1: details[15],
+                name: order.shipping_first_name + " " + order.shipping_last_name,
+                phone: order.billing_phone,
+                address1: order.shipping_address,
                 /* address2: order[15], */
-                city: details[16],
-                state: state[1],
-                postalCode: details[18],
-                country: details[19]
+                city: order.shipping_city,
+                state: order.shipping_state,
+                postalCode: order.shipping_postcode,
+                country: (country ? country.name : order.shipping_country)
             };
         };
     }
