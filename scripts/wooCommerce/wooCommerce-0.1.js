@@ -1,11 +1,5 @@
 console.log("wooCommerce loaded");
-var country = [], countryCSV = host.getInputFileContents("data/country.csv");
-if (countryCSV) {
-    setTimeout(() => {
-        // PapaParse has to load
-        country = Papa.parse(countryCSV);
-    }, 0);
-}var wooCommerceOrdersStr = host.getInputFileContents("data/wooCommerce.json");
+var wooCommerceOrdersStr = host.getInputFileContents("data/wooCommerce.json");
 var wooCommerceOrders = [];
 if (wooCommerceOrdersStr) {
 	wooCommerceOrders = JSON.parse(wooCommerceOrdersStr);
