@@ -15,27 +15,36 @@ this.regions = new function () {
         }, 0);
     }
     this.getCountry = function (cCode) {
-        var country = this.country.find((c, i) => {
-                if (c.name == cCode.toUpperCase() || c.code == cCode.toUpperCase()) {
-                    if (!c.getState) {
-                        // Replace the entry with a country object
-                        c = new Country(c);
-                    }
-                    return true;
-                }
+        /*
+        var country = this.country.data.findIndex((c, i) => {
+        if (c.name == cCode.toUpperCase() || c.code == cCode.toUpperCase()) {
+        if (!c.getState) {
+        // Replace the entry with a country object
+        c = new Country(c);
+        }
+        return true;
+        }
+        });
+         */
+        var countryIndex = this.country.data.findIndex((c) => {
+                return c.name == cCode.toUpperCase() || c.code == cCode.toUpperCase();
             });
-        if (!country) {
+        if (!countryIndex == -1) {
             return null;
         }
-        return country;
+        if (!this.country.data[countryIndex].getState) {
+            // Replace the entry with a country object
+            this.country.data[countryIndex] = new Country(this.country.data[countryIndex]);
+        }
+        return this.country.data[countryIndex];
     };
     function Country(options) {
         this.name = options.name;
         this.code = options.code;
-        this.states = [];
+        this.states;
         //this.countryCode = countryCode;
         this.getState = function (state) {
-            if (!this.states.length) {
+            if (!this.states) {
                 var statesCSV = host.getInputFileContents(`data/${this.name}/state.csv`);
                 if (!statesCSV) {
                     statesCSV = host.getInputFileContents(`${me.libraryUrl}/data/${this.name}/state.csv`);
@@ -49,7 +58,7 @@ this.regions = new function () {
                         });
                 }
             }
-            var state = this.states.find((s) => {
+            var state = this.states.data.find((s) => {
                     return (s.name == state.toUpperCase() || s.code == state.toUpperCase());
                 });
             return state;
