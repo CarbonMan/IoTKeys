@@ -4,12 +4,12 @@
     ],
     "config": {
         "disabled": false,
-        "name*": "Australia Post",
+        "name*": "Fastway",
         "process": {
             "initialURL*": "https://myfastway.com.au/#/send/item/new",
             "targets": [{
                     "id": "Standard parcel",
-                    "regexp*": "shipping-and-tracking/orders",
+                    "regexp*": "send/item",
                     "parameters": {
                     },
                     "scripts*": {
