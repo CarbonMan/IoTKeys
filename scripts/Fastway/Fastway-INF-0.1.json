@@ -1,0 +1,24 @@
+{
+    "components": [
+        "scripts/Fastway/Fastway-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "name*": "Australia Post",
+        "process": {
+            "initialURL*": "https://myfastway.com.au/#/send/item/new",
+            "targets": [{
+                    "id": "Standard parcel",
+                    "regexp*": "shipping-and-tracking/orders",
+                    "parameters": {
+                    },
+                    "scripts*": {
+                        "body": {
+                            "file": "scripts/Fastway/Fastway-0.1.js"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
