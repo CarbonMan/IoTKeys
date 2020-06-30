@@ -18,6 +18,14 @@
       "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
     },
     {
+      "id": "Fastway",
+      "category": "URL",
+      "name": "Fastway",
+      "version": "0.1",
+      "descriptionLocation": "scripts/Fastway/description-0.1.txt",
+      "infLocation": "scripts/Fastway/Fastway-INF-0.1.json"
+    },
+    {
       "id": "Centaur",
       "category": "URL",
       "name": "Centaur MMS",
