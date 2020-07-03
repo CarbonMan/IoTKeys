@@ -20,7 +20,7 @@
     {
       "id": "Fastway",
       "category": "URL",
-      "name": "Fastway",
+      "name": "Fastway (under development)",
       "version": "0.1",
       "descriptionLocation": "scripts/Fastway/description-0.1.txt",
       "infLocation": "scripts/Fastway/Fastway-INF-0.1.json"
@@ -28,7 +28,7 @@
     {
       "id": "DHL",
       "category": "URL",
-      "name": "DHL",
+      "name": "DHL (under development)",
       "version": "0.1",
       "descriptionLocation": "scripts/DHL/description-0.1.txt",
       "infLocation": "scripts/DHL/DHL-INF-0.1.json"
