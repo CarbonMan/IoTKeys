@@ -9,7 +9,7 @@
             "initialURL*": "https://mydhl.express.dhl/",
             "targets": [{
                     "id": "Standard parcel",
-                    "regexp*": "shipment\\.html",
+                    "regexp*": "createNewShipmentTab",
                     "parameters": {
                     },
                     "scripts*": {
