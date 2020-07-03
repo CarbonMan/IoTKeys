@@ -4,7 +4,7 @@
     ],
     "config": {
         "disabled": false,
-        "name*": "DHL",
+        "name*": "DHL (under development)",
         "process": {
             "initialURL*": "https://mydhl.express.dhl/",
             "targets": [{
