@@ -18,16 +18,7 @@
                             "file": "scripts/Centaur/Centaur batched with cubist interface-0.1.js"
                         }
                     }
-                },{
-          		"regexp": "x2=%22prog\\\\symbols\\\\ICP33\\.x2",
-          		"parameters": {
-			},
-          		"scripts*": {
-				"body": {
-					"file": "scripts/Centaur/inbound-0.1.js"
-				}
-			}
-		}
+                }
             ]
         }
     }
