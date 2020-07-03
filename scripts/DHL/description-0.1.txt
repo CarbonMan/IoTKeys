@@ -1,0 +1,1 @@
+Connects the DHL booking page to local data and devices.
