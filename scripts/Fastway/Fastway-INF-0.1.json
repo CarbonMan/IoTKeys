@@ -4,7 +4,7 @@
     ],
     "config": {
         "disabled": false,
-        "name*": "Fastway",
+        "name*": "Fastway (under development)",
         "process": {
             "initialURL*": "https://myfastway.com.au/#/send/item/new",
             "targets": [{
