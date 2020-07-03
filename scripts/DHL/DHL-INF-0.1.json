@@ -1,0 +1,24 @@
+{
+    "components": [
+        "scripts/DHL/DHL-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "name*": "DHL",
+        "process": {
+            "initialURL*": "https://mydhl.express.dhl/",
+            "targets": [{
+                    "id": "Standard parcel",
+                    "regexp*": "shipment\\.html",
+                    "parameters": {
+                    },
+                    "scripts*": {
+                        "body": {
+                            "file": "scripts/DHL/DHL-0.1.js"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
