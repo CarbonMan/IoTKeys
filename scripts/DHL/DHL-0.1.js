@@ -21,7 +21,7 @@ setInterval(() => {
     }
     if (me.DHL_currentOrder) {
         var btns = document.querySelectorAll(".switcher__label");
-        if (window.getComputedStyle(btns[1])["background-color"] == "rgb(249, 249, 249)") {
+        if (btns.length && window.getComputedStyle(btns[1])["background-color"] == "rgb(249, 249, 249)") {
             // Click the "Packages" button
             btns[1].click();
             clearAndRead();
