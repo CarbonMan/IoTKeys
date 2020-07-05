@@ -1,29 +1,40 @@
 var processes = [], me = this,
 processPtr = 0;
-var addOrderActivated;
+var addOrderActivated,
+DHL_changeEvent = new Event("change");
 // window.onload did not fire
 // Screen is an Angular app so the weight field is not always on the screen.
-this.AP_wtElement = this.AP_lenElement = this.AP_widthtElement = this.AP_htElement = null;
-me.AP_bookingReference = "";
-me.AP_currentOrder = null;
-me.AP_inventory = null;
-me.AP_saveBtn = null;
+this.DHL_wtElement = this.DHL_lenElement = this.DHL_widthtElement = this.DHL_htElement = null;
+me.DHL_currentOrder = me.DHL_senderCountry = me.DHL_receiverCountry = null;
+me.DHL_bookingReference = "";
+me.DHL_currentOrder = null;
+me.DHL_inventory = null;
+me.DHL_saveBtn = null;
 setInterval(() => {
-    if (!me.AP_wtElement) {
-        me.AP_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
+	if (!me.DHL_senderCountry){
+		var countries = document.querySelectorAll("input[ng-model=\"countryCtrl.countryName\"]");
+		if (countries.length){
+			me.DHL_senderCountry = countries[0];
+			me.DHL_receiverCountry = countries[1];
+			startProcessing();
+		}
+	}
+	/*
+    if (!me.DHL_wtElement) {
+        me.DHL_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
     }
-    if (!me.AP_saveBtn) {
-        me.AP_saveBtn = document.querySelector(".ship-selected.primary-button.ng-scope");
-        if (me.AP_saveBtn) {
-            me.AP_saveBtn.addEventListener("click", () => {
-                if (me.AP_inventory) {
-                    me.AP_inventory.save();
+    if (!me.DHL_saveBtn) {
+        me.DHL_saveBtn = document.querySelector(".ship-selected.primary-button.ng-scope");
+        if (me.DHL_saveBtn) {
+            me.DHL_saveBtn.addEventListener("click", () => {
+                if (me.DHL_inventory) {
+                    me.DHL_inventory.save();
                 }
             });
         }
     }
 
-    if (me.AP_wtElement) {
+    if (me.DHL_wtElement) {
         if (!addOrderActivated) {
             addOrderActivated = true;
             var hyper = document.querySelectorAll(".switch-view-button.primary-link");
@@ -34,24 +45,24 @@ setInterval(() => {
                 document.getElementById("additionalDetailsForm-domestic-labelInformation").focus();
             }, 0);
             console.log("activated");
-            me.AP_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
-            me.AP_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
-            me.AP_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
-            me.AP_ReceiverCountry = document.getElementById("recipientDetailsForm-country-select");
+            me.DHL_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
+            me.DHL_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
+            me.DHL_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
+            me.DHL_ReceiverCountry = document.getElementById("recipientDetailsForm-country-select");
 
-            me.AP_ReceiverPhone = document.getElementById("recipientDetailsForm-phone");
-            var angRphone = angular.element(me.AP_ReceiverPhone);
-            me.AP_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
-            var angRname = angular.element(me.AP_ReceiverName);
-            me.AP_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
-            var angRcvr = angular.element(me.AP_ReceiverAddress);
+            me.DHL_ReceiverPhone = document.getElementById("recipientDetailsForm-phone");
+            var angRphone = angular.element(me.DHL_ReceiverPhone);
+            me.DHL_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
+            var angRname = angular.element(me.DHL_ReceiverName);
+            me.DHL_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
+            var angRcvr = angular.element(me.DHL_ReceiverAddress);
 
             // Try and load the receiver
             document.getElementById("additionalDetailsForm-domestic-labelInformation")
             .addEventListener('change', (ev) => {
                 console.log("Reference focus");
                 if (ev.target.value) {
-                    me.AP_bookingReference = ev.target.value;
+                    me.DHL_bookingReference = ev.target.value;
                     clearAndRead();
                     if (parameters.orderDetails) {
                         var order;
@@ -69,34 +80,34 @@ setInterval(() => {
                                     orderNumber: ev.target.value
                                 });
                         }
-                        me.AP_currentOrder = order;
+                        me.DHL_currentOrder = order;
                         if (order) {
-                            var customEvent = new Event("change");
+                            var DHL_changeEvent = new Event("change");
                             if (order.getSender) {
                                 var s = order.getSender();
                                 var sndrLine1 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line1");
                                 sndrLine1.value = s.address1;
-                                sndrLine1.dispatchEvent(customEvent);
+                                sndrLine1.dispatchEvent(DHL_changeEvent);
                                 var sndrLine2 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line2");
                                 sndrLine2.value = s.address2 || "";
-                                sndrLine2.dispatchEvent(customEvent);
+                                sndrLine2.dispatchEvent(DHL_changeEvent);
                                 var sndrLine3 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line3");
                                 sndrLine3.value = s.address3 || "";
-                                sndrLine3.dispatchEvent(customEvent);
+                                sndrLine3.dispatchEvent(DHL_changeEvent);
 
                                 var sSuburbElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-suburb");
                                 sSuburbElm.value = s.city;
-                                sSuburbElm.dispatchEvent(customEvent);
+                                sSuburbElm.dispatchEvent(DHL_changeEvent);
                                 var sStateElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-state");
                                 sStateElm.value = "string:" + s.stateCode;
-                                sStateElm.dispatchEvent(customEvent);
+                                sStateElm.dispatchEvent(DHL_changeEvent);
                                 var sPostElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-postcode");
                                 sPostElm.value = s.postalCode;
-                                sPostElm.dispatchEvent(customEvent);
+                                sPostElm.dispatchEvent(DHL_changeEvent);
 
                                 var sNameElm = document.getElementById("senderDetailsForm-name-typeahead-input");
                                 sNameElm.value = s.postalCode;
-                                sNameElm.dispatchEvent(customEvent);
+                                sNameElm.dispatchEvent(DHL_changeEvent);
                             }
                             if (order.getReceiver) {
                                 var r = order.getReceiver();
@@ -104,32 +115,32 @@ setInterval(() => {
 
                                 var recvLine1 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line1");
                                 recvLine1.value = r.address1;
-                                recvLine1.dispatchEvent(customEvent);
+                                recvLine1.dispatchEvent(DHL_changeEvent);
                                 var recvLine2 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line2");
                                 recvLine2.value = r.address2 || "";
-                                recvLine2.dispatchEvent(customEvent);
+                                recvLine2.dispatchEvent(DHL_changeEvent);
                                 var recvLine3 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line3");
                                 recvLine3.value = r.address3 || "";
-                                recvLine3.dispatchEvent(customEvent);
+                                recvLine3.dispatchEvent(DHL_changeEvent);
 
                                 var rSuburbElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-suburb");
                                 rSuburbElm.value = r.city;
-                                rSuburbElm.dispatchEvent(customEvent);
+                                rSuburbElm.dispatchEvent(DHL_changeEvent);
                                 var rStateElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-state");
                                 rStateElm.value = "string:" + r.stateCode;
-                                rStateElm.dispatchEvent(customEvent);
+                                rStateElm.dispatchEvent(DHL_changeEvent);
                                 var rPostElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-postcode");
                                 rPostElm.value = r.postalCode;
-                                rPostElm.dispatchEvent(customEvent);
+                                rPostElm.dispatchEvent(DHL_changeEvent);
 
                                 //angRname.val(r.name);
                                 var elm = document.getElementById("recipientDetailsForm-name-typeahead-input");
                                 elm.value = r.name;
-                                elm.dispatchEvent(customEvent);
+                                elm.dispatchEvent(DHL_changeEvent);
                                 //angRphone.val(r.phone);
                                 var elm = document.getElementById("recipientDetailsForm-phone");
                                 elm.value = r.phone;
-                                elm.dispatchEvent(customEvent);
+                                elm.dispatchEvent(DHL_changeEvent);
                                 //$scope.$apply();
                             }
                         }
@@ -137,25 +148,25 @@ setInterval(() => {
                 }
             });
             // Get the weight and cubic
-            me.AP_wtElement.addEventListener('focus', clearAndRead);
+            me.DHL_wtElement.addEventListener('focus', clearAndRead);
 
             // Inventory processing
             document.querySelector(".primary-button.save-order-button")
             .addEventListener("click", () => {
                 if (parameters.inventory) {
-                    if (!me.AP_inventory) {
+                    if (!me.DHL_inventory) {
                         try {
-                            me.AP_inventory = me[parameters.inventory]();
+                            me.DHL_inventory = me[parameters.inventory]();
                         } catch (e) {
                             console.error(e);
                             return;
                         }
                     }
-                    me.AP_currentOrder.items.forEach((item) => {
-                        me.AP_inventory.removeFromInventory({
+                    me.DHL_currentOrder.items.forEach((item) => {
+                        me.DHL_inventory.removeFromInventory({
                             sku: item.sku,
                             qty: item.qty,
-                            order: me.AP_bookingReference
+                            order: me.DHL_bookingReference
                         });
                     });
                 }
@@ -164,7 +175,64 @@ setInterval(() => {
     } else {
         addOrderActivated = false;
     }
+	*/
 }, 1000);
+
+function startProcessing() {
+    var orderNumber = prompt("Enter order number");
+    if (!orderNumber)
+        return;
+	addOrderActivated = true;
+    me.DHL_bookingReference = orderNumber;
+    if (parameters.orderDetails) {
+        var order;
+        if (Array.isArray(parameters.orderDetails)) {
+            parameters.orderDetails.find((rd) => {
+                order = me[rd]({
+                        parameters: parameters,
+                        orderNumber: me.DHL_bookingReference
+                    });
+                return order;
+            });
+        } else {
+            order = me[parameters.orderDetails]({
+                    parameters: parameters,
+                    orderNumber: me.DHL_bookingReference
+                });
+        }
+        me.DHL_currentOrder = order;
+        if (me.DHL_currentOrder) {
+			DHL_setAddresses();
+		}
+    }
+}
+
+function DHL_setAddresses(){
+	var s = me.DHL_currentOrder.getSender();
+	var r = me.DHL_currentOrder.getReceiver();
+	var addressElms = document.querySelectorAll("input[name=\"address\"]");
+	me.DHL_senderCountry.value = s.countryName;
+	me.DHL_senderCountry.dispatchEvent(DHL_changeEvent);
+	var senderAddress = 
+	s.address1 +
+	(s.address2 ? s.address2 : "") +
+	(s.address3 ? s.address3 : "") + 
+	"," + s.city + 
+	"," + s.stateName;
+	addressElms[0].value = senderAddress;
+	addressElms[0].dispatchEvent(DHL_changeEvent);
+	
+	me.DHL_receiverCountry.value = r.countryName;
+	me.DHL_receiverCountry.dispatchEvent(DHL_changeEvent);
+	var receiverAddress = 
+	r.address1 +
+	(r.address2 ? r.address2 : "") +
+	(r.address3 ? r.address3 : "") + 
+	"," + r.city + 
+	"," + r.stateName;
+	addressElms[1].value = receiverAddress;
+	addressElms[1].dispatchEvent(DHL_changeEvent);
+}
 
 function clearAndRead() {
     processPtr = 0;
@@ -181,8 +249,8 @@ this.next = function (deviceId, value) {
         host.getValueFromDevice(processes[processPtr].id, "next");
         return;
     }
-    me.AP_$scope = angular.element(me.AP_wtElement).scope();
-    me.AP_$ctrl = me.AP_$scope.$ctrl;
+    me.DHL_$scope = angular.element(me.DHL_wtElement).scope();
+    me.DHL_$ctrl = me.DHL_$scope.$ctrl;
     // 2 different use cases have to be dealt with
     // 1. Existing job -> check cubic & weight
     // 2. New job -> apply cubic & weight
@@ -204,16 +272,16 @@ this.next = function (deviceId, value) {
                 if (b) {
                     // Values come as mm
                     nLength = b.length / 1000;
-                    me.AP_$ctrl.length = nLength;
-                    //angular.element(me.AP_lenElement).val(nLength)
+                    me.DHL_$ctrl.length = nLength;
+                    //angular.element(me.DHL_lenElement).val(nLength)
                     //.scope().apply();
                     nWidth = b.width / 1000;
-                    me.AP_$ctrl.width = nWidth;
-                    //angular.element(me.AP_widthtElement).val(nWidth)
+                    me.DHL_$ctrl.width = nWidth;
+                    //angular.element(me.DHL_widthtElement).val(nWidth)
                     //.scope().apply();
                     nHeight = b.height / 1000;
-                    me.AP_$ctrl.height = nHeight;
-                    //angular.element(me.AP_htElement).val(nHeight)
+                    me.DHL_$ctrl.height = nHeight;
+                    //angular.element(me.DHL_htElement).val(nHeight)
                     //.scope().apply();
                     nItems = 1;
                 }
@@ -228,29 +296,29 @@ this.next = function (deviceId, value) {
         case "WEIGHT":
             //fld.set(prc.result);
             nWT = Number(prc.result);
-            me.AP_$ctrl.weight = nWT;
+            me.DHL_$ctrl.weight = nWT;
             break;
         case "LENGTH":
             nLength = Number(prc.result) / 100;
-            me.AP_$ctrl.length = nLength;
-            //angular.element(me.AP_lenElement).val(nLength)
+            me.DHL_$ctrl.length = nLength;
+            //angular.element(me.DHL_lenElement).val(nLength)
             //.scope().apply();
             break;
         case "WIDTH":
             nWidth = Number(prc.result) / 100;
-            me.AP_$ctrl.width = nWidth;
-            //angular.element(me.AP_widthtElement).val(nWidth)
+            me.DHL_$ctrl.width = nWidth;
+            //angular.element(me.DHL_widthtElement).val(nWidth)
             //.scope().apply();
             break;
         case "HEIGHT":
             nHeight = Number(prc.result) / 100;
-            me.AP_$ctrl.height = nHeight;
-            //angular.element(me.AP_htElement).val(nHeight)
+            me.DHL_$ctrl.height = nHeight;
+            //angular.element(me.DHL_htElement).val(nHeight)
             //.scope().apply();
             break;
         }
     }
-    me.AP_$scope.$apply();
+    me.DHL_$scope.$apply();
 }
 
 // What devices are available?
