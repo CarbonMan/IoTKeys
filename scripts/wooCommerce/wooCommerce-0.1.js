@@ -26,6 +26,20 @@ this.wooCommerceOrder = function (options) {
                     qty: p.qty
                 });
         });
+        this.getSender = function () {
+			var country = me.regions.getCountry(order.billing_country);
+            return {
+                name: order.billing_first_name + " " + order.billing_last_name,
+                phone: order.billing_phone,
+                address1: order.billing_address,
+                /* address2: order[15], */
+                city: order.billing_city,
+                stateCode: order.billing_state,
+                postalCode: order.billing_postcode,
+                countryName: (country ? country.name : order.billing_country),
+                countryCode: (country ? country.code : order.billing_country)
+            };
+        };
         this.getReceiver = function () {
 			var country = me.regions.getCountry(order.shipping_country);
             return {
