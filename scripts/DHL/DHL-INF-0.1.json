@@ -8,10 +8,18 @@
         "process": {
             "initialURL*": "https://mydhl.express.dhl/",
             "targets": [{
-                    "id": "Standard parcel",
+                    "id": "Standard parcel 1",
                     "regexp*": "home\\.html",
-                    "parameters": {
-                    },
+                    "parameters": {},
+                    "scripts*": {
+                        "body": {
+                            "file": "scripts/DHL/DHL-0.1.js"
+                        }
+                    }
+                }, {
+                    "id": "Standard parcel 2",
+                    "regexp*": "shipment\\.html",
+                    "parameters": {},
                     "scripts*": {
                         "body": {
                             "file": "scripts/DHL/DHL-0.1.js"
