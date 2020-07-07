@@ -8,16 +8,31 @@ this.DHL_wtElement = this.DHL_lenElement = this.DHL_widthtElement = this.DHL_htE
 me.DHL_currentOrder = me.DHL_senderCountry = me.DHL_receiverCountry = null;
 me.DHL_bookingReference = "";
 me.DHL_currentOrder = null;
+me.DHL_receiverName = null;
 me.DHL_inventory = null;
 me.DHL_saveBtn = null;
+var newShipmentTab = false;
 setInterval(() => {
-    //if (!me.DHL_senderCountry){
     var countries = document.querySelectorAll("input[ng-model=\"countryCtrl.countryName\"]");
     if (countries.length) {
+        if (!newShipmentTab) {
+            // The new shipment tab should be selected
+            newShipmentTab = true;
+            var tab = document.querySelector("span[href=\"#/createNewShipmentTab\"]");
+            if (tab) {
+                tab.click();
+                return;
+            }
+        }
         me.DHL_senderCountry = countries[0];
         me.DHL_receiverCountry = countries[1];
-        if (!me.DHL_senderCountry.value)
-            startProcessing();
+        if (!me.DHL_receiverCountry.value) {
+            var button = document.createElement("Button");
+            button.innerHTML = "Order";
+            button.style = "top:0;right:0;position:absolute;z-index: 9999";
+            document.body.appendChild(button);
+            button.addEventListener("click", startProcessing);
+        }
     }
     if (me.DHL_currentOrder) {
         var btns = document.querySelectorAll(".switcher__label");
@@ -26,165 +41,79 @@ setInterval(() => {
             btns[1].click();
             clearAndRead();
         }
-    }
-    //}
-    /*
-    if (!me.DHL_wtElement) {
-    me.DHL_wtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-weight");
-    }
-    if (!me.DHL_saveBtn) {
-    me.DHL_saveBtn = document.querySelector(".ship-selected.primary-button.ng-scope");
-    if (me.DHL_saveBtn) {
-    me.DHL_saveBtn.addEventListener("click", () => {
-    if (me.DHL_inventory) {
-    me.DHL_inventory.save();
-    }
-    });
-    }
-    }
-
-    if (me.DHL_wtElement) {
-    if (!addOrderActivated) {
-    addOrderActivated = true;
-    var hyper = document.querySelectorAll(".switch-view-button.primary-link");
-    hyper.forEach((btn) => {
-    btn.click();
-    });
-    setTimeout(() => {
-    document.getElementById("additionalDetailsForm-domestic-labelInformation").focus();
-    }, 0);
-    console.log("activated");
-    me.DHL_lenElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-length");
-    me.DHL_widthtElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-width");
-    me.DHL_htElement = document.getElementById("parcelDetailsForm-domestic-parcelDimensionsForm-height");
-    me.DHL_ReceiverCountry = document.getElementById("recipientDetailsForm-country-select");
-
-    me.DHL_ReceiverPhone = document.getElementById("recipientDetailsForm-phone");
-    var angRphone = angular.element(me.DHL_ReceiverPhone);
-    me.DHL_ReceiverName = document.getElementById("recipientDetailsForm-name-typeahead-input");
-    var angRname = angular.element(me.DHL_ReceiverName);
-    me.DHL_ReceiverAddress = document.getElementById("recipientDetailsForm-addressForm-autoAddressForm-typeahead-input");
-    var angRcvr = angular.element(me.DHL_ReceiverAddress);
-
-    // Try and load the receiver
-    document.getElementById("additionalDetailsForm-domestic-labelInformation")
-    .addEventListener('change', (ev) => {
-    console.log("Reference focus");
-    if (ev.target.value) {
-    me.DHL_bookingReference = ev.target.value;
-    clearAndRead();
-    if (parameters.orderDetails) {
-    var order;
-    if (Array.isArray(parameters.orderDetails)) {
-    parameters.orderDetails.find((rd) => {
-    order = me[rd]({
-    parameters: parameters,
-    orderNumber: ev.target.value
-    });
-    return order;
-    });
+        if (!me.DHL_receiverName) {
+            var names = document.querySelectorAll("input[ng-model=\"addressCtrl.attributes.address.name\"]");
+            if (names.length) {
+                var sender = me.DHL_currentOrder.getSender();
+                if (sender) {
+                    names[0].value = sender.name;
+                    names[0].dispatchEvent(DHL_changeEvent);
+                }
+                me.DHL_receiverName = names[1];
+                var receiver = me.DHL_currentOrder.getReceiver();
+                me.DHL_receiverName.value = receiver.name;
+                me.DHL_receiverName.dispatchEvent(DHL_changeEvent);
+                var cos = document.querySelectorAll("input[ng-model=\"addressCtrl.attributes.address.company\"]");
+                if (cos.length) {
+                    if (sender) {
+                        cos[0].value = sender.companyName || sender.name;
+                        cos[0].dispatchEvent(DHL_changeEvent);
+                    }
+                    cos[1].value = receiver.companyName;
+                    cos[1].dispatchEvent(DHL_changeEvent);
+                }
+                var elms = document.querySelectorAll("input[ng-model=\"addressContactCtrl.model.email\"]");
+                if (elms.length) {
+                    if (sender) {
+                        elms[0].value = sender.email;
+                        elms[0].dispatchEvent(DHL_changeEvent);
+                    }
+                    elms[1].value = receiver.email;
+                    elms[1].dispatchEvent(DHL_changeEvent);
+                }
+                elms = document.querySelectorAll("input[ng-model=\"phoneCodeCtrl.model.phone\"]");
+                if (elms.length) {
+                    if (sender) {
+                        elms[0].value = sender.phone;
+                        elms[0].dispatchEvent(DHL_changeEvent);
+                    }
+                    elms[1].value = receiver.phone;
+                    elms[1].dispatchEvent(DHL_changeEvent);
+                }
+                setTimeout(() => {
+                    var elm = document.querySelector("button[ng-bind=\"addressDetailsCtrl.nextButtonText\"]");
+                    elm.click();
+                }, 1500);
+            }
+        }
+        /*
+        if (!waitingConfirmation) {
+        // Save the order to sessionStorage because the page reloads
+        var successBtn = document.querySelector(".btn.btn_success");
+        if (successBtn) {
+        waitingConfirmation = true;
+        successBtn.addEventListener('click', () => {
+        debugger;
+        sessionStorage.setItem('IOTKEY_DHL', JSON.stringify(me.DHL_currentOrder));
+        });
+        }
+        }
+         */
     } else {
-    order = me[parameters.orderDetails]({
-    parameters: parameters,
-    orderNumber: ev.target.value
-    });
+        // Is there an order in session storage?
+        var orderStr = sessionStorage.getItem('IOTKEY_DHL');
+        if (orderStr) {
+            var restore = JSON.parse(orderStr);
+            me.DHL_currentOrder = findOrderManagement(restore.orderNumber);
+            me.DHL_currentOrder.load(restore);
+        }
     }
-    me.DHL_currentOrder = order;
-    if (order) {
-    var DHL_changeEvent = new Event("change");
-    if (order.getSender) {
-    var s = order.getSender();
-    var sndrLine1 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line1");
-    sndrLine1.value = s.address1;
-    sndrLine1.dispatchEvent(DHL_changeEvent);
-    var sndrLine2 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line2");
-    sndrLine2.value = s.address2 || "";
-    sndrLine2.dispatchEvent(DHL_changeEvent);
-    var sndrLine3 = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-line3");
-    sndrLine3.value = s.address3 || "";
-    sndrLine3.dispatchEvent(DHL_changeEvent);
-
-    var sSuburbElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-suburb");
-    sSuburbElm.value = s.city;
-    sSuburbElm.dispatchEvent(DHL_changeEvent);
-    var sStateElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-state");
-    sStateElm.value = "string:" + s.stateCode;
-    sStateElm.dispatchEvent(DHL_changeEvent);
-    var sPostElm = document.getElementById("senderDetailsForm-addressForm-manualAddressForm-locality-postcode");
-    sPostElm.value = s.postalCode;
-    sPostElm.dispatchEvent(DHL_changeEvent);
-
-    var sNameElm = document.getElementById("senderDetailsForm-name-typeahead-input");
-    sNameElm.value = s.postalCode;
-    sNameElm.dispatchEvent(DHL_changeEvent);
-    }
-    if (order.getReceiver) {
-    var r = order.getReceiver();
-    //var $scope = angular.element(document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line1")).scope();
-
-    var recvLine1 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line1");
-    recvLine1.value = r.address1;
-    recvLine1.dispatchEvent(DHL_changeEvent);
-    var recvLine2 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line2");
-    recvLine2.value = r.address2 || "";
-    recvLine2.dispatchEvent(DHL_changeEvent);
-    var recvLine3 = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-line3");
-    recvLine3.value = r.address3 || "";
-    recvLine3.dispatchEvent(DHL_changeEvent);
-
-    var rSuburbElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-suburb");
-    rSuburbElm.value = r.city;
-    rSuburbElm.dispatchEvent(DHL_changeEvent);
-    var rStateElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-state");
-    rStateElm.value = "string:" + r.stateCode;
-    rStateElm.dispatchEvent(DHL_changeEvent);
-    var rPostElm = document.getElementById("recipientDetailsForm-addressForm-manualAddressForm-locality-postcode");
-    rPostElm.value = r.postalCode;
-    rPostElm.dispatchEvent(DHL_changeEvent);
-
-    //angRname.val(r.name);
-    var elm = document.getElementById("recipientDetailsForm-name-typeahead-input");
-    elm.value = r.name;
-    elm.dispatchEvent(DHL_changeEvent);
-    //angRphone.val(r.phone);
-    var elm = document.getElementById("recipientDetailsForm-phone");
-    elm.value = r.phone;
-    elm.dispatchEvent(DHL_changeEvent);
-    //$scope.$apply();
-    }
-    }
-    }
-    }
-    });
-    // Get the weight and cubic
-    me.DHL_wtElement.addEventListener('focus', clearAndRead);
-
-    // Inventory processing
-    document.querySelector(".primary-button.save-order-button")
-    .addEventListener("click", () => {
-    if (parameters.inventory) {
-    if (!me.DHL_inventory) {
-    try {
-    me.DHL_inventory = me[parameters.inventory]();
-    } catch (e) {
-    console.error(e);
-    return;
-    }
-    }
-    me.DHL_currentOrder.items.forEach((item) => {
-    me.DHL_inventory.removeFromInventory({
-    sku: item.sku,
-    qty: item.qty,
-    order: me.DHL_bookingReference
-    });
-    });
-    }
-    }, false);
-    }
-    } else {
-    addOrderActivated = false;
-    }
-     */
+	// page 3
+	if (!me.DHL_wtElement)
+		me.DHL_wtElement = document.querySelector("input[ng-model=\"packagingRowCtrl.rowModel.weight\"]");
+    if (me.DHL_wtElement && !me.DHL_wtElement.value) {
+		clearAndRead();
+	}
 }, 1000);
 
 function startProcessing() {
@@ -211,35 +140,66 @@ function startProcessing() {
         }
         me.DHL_currentOrder = order;
         if (me.DHL_currentOrder) {
-            DHL_setAddresses();
+            DHL_setAddresses()
+            .then(() => {
+                var successBtn = document.querySelector("button[aqa-id=\"dashboardNewShipmentNext\"]");
+                //var successBtn = document.querySelector(".btn.btn_success");
+                sessionStorage.setItem('IOTKEY_DHL', JSON.stringify(me.DHL_currentOrder));
+                setTimeout(() => {
+                    successBtn.click();
+                }, 1500);
+            });
         }
     }
 }
 
+function findOrderManagement(orderNumber) {
+    var order;
+    if (parameters.orderDetails) {
+        if (Array.isArray(parameters.orderDetails)) {
+            parameters.orderDetails.find((rd) => {
+                order = me[rd]({
+                        parameters: parameters,
+                        orderNumber: orderNumber
+                    });
+                return order;
+            });
+        } else {
+            order = me[parameters.orderDetails]({
+                    parameters: parameters,
+                    orderNumber: orderNumber
+                });
+        }
+        me.DHL_currentOrder = order;
+    }
+    return order;
+}
+
 function DHL_setAddresses() {
-    var s = me.DHL_currentOrder.getSender();
-    var r = me.DHL_currentOrder.getReceiver();
-    var addressElms = document.querySelectorAll("input[name=\"address\"]");
-    me.DHL_senderCountry.value = s.countryName;
-    //debugger;
-    me.DHL_senderCountry.dispatchEvent(DHL_changeEvent);
-    var cOptions = document.querySelectorAll("a.ie8-typeahead-link.ng-scope");
-    cOptions[0].click();
-    var senderAddress =
-        s.address1 +
-        (s.address2 ? s.address2 : "") +
-        (s.address3 ? s.address3 : "") +
-        ", " + s.city +
-        ", " + s.stateCode +
-        ", " + s.countryName;
-    addressElms[0].value = senderAddress;
-    addressElms[0].dispatchEvent(DHL_changeEvent);
-    setTimeout(() => {
-        // There needs to be a delay while the address is being deciphered.
+    return new Promise((resolve, reject) => {
+        var s = me.DHL_currentOrder.getSender();
+        var r = me.DHL_currentOrder.getReceiver();
+        var addressElms = document.querySelectorAll("input[name=\"address\"]");
+        me.DHL_senderCountry.value = s.countryName;
+        //debugger;
+        me.DHL_senderCountry.dispatchEvent(DHL_changeEvent);
         var cOptions = document.querySelectorAll("a.ie8-typeahead-link.ng-scope");
-        debugger;
-        if (cOptions.length) {
-            cOptions[0].click();
+        cOptions[0].click();
+        var senderAddress =
+            s.address1 +
+            (s.address2 ? s.address2 : "") +
+            (s.address3 ? s.address3 : "") +
+            ", " + s.city +
+            ", " + s.stateCode +
+            ", " + s.countryName;
+        addressElms[0].value = senderAddress;
+        addressElms[0].dispatchEvent(DHL_changeEvent);
+        setTimeout(() => {
+            // There needs to be a delay while the address is being deciphered.
+            var cOptions = document.querySelectorAll("a.ie8-typeahead-link.ng-scope");
+            if (cOptions.length) {
+                cOptions[0].click();
+            }
 
             me.DHL_receiverCountry.value = r.countryName;
             me.DHL_receiverCountry.dispatchEvent(DHL_changeEvent);
@@ -259,10 +219,17 @@ function DHL_setAddresses() {
                 var cOptions = document.querySelectorAll("a.ie8-typeahead-link.ng-scope");
                 if (cOptions.length) {
                     cOptions[0].click();
+                    resolve();
+                } else {
+                    reject();
                 }
             }, 2500);
-        }
-    }, 2500);
+            /*            } else {
+            reject();
+            }
+             */
+        }, 2500);
+    });
 }
 
 function clearAndRead() {
