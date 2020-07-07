@@ -25,9 +25,12 @@ this.ebayOrder = function (options) {
         return new EbayOrder(orders);
     else
         return null;
+
     function EbayOrder(orders) {
         // No sender is recorded in an ebay order
         var details = orders[0];
+		this.orders = orders;
+        this.orderNumber = details[0];
         this.items = [];
         orders.forEach(item => {
             if (item[20]) {
@@ -39,18 +42,30 @@ this.ebayOrder = function (options) {
                 });
             }
         });
+        this.load = function (restore) {
+			// Some screens (DHL) may jump between pages, and so the order has
+			// to be restored from session storage
+            for (var i in restore) {
+                this[i] = restore[i];
+            }
+        };
+		this.sender = function(){
+			return null;
+		};
         this.getReceiver = function () {
-			var state, country = me.regions.getCountry(details[19]);
-			if (country)
-				state = country.getState(details[17]);
+            var state,
+            country = me.regions.getCountry(details[19]);
+            if (country)
+                state = country.getState(details[17]);
             return {
                 name: details[12],
+                companyName: details[12],
                 phone: details[13],
                 address1: details[15],
                 /* address2: order[15], */
                 city: details[16],
-                stateCode: (state ? state.code: details[17]),
-                stateName: (state ? state.name: details[17]),
+                stateCode: (state ? state.code : details[17]),
+                stateName: (state ? state.name : details[17]),
                 postalCode: details[18],
                 countryCode: (country ? country.code : details[19]),
                 countryName: (country ? country.name : details[19])
