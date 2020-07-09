@@ -6,6 +6,7 @@
     "config": {
         "disabled": false,
         "type": "receiverDetails",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/ebay/ebayOrder/help-0.1.html",
         "id": "ebayReceiver",
         "name*": "Ebay Receiver",
         "location*": "scripts/ebay/ebayOrder/ebayOrder-0.1.js",
