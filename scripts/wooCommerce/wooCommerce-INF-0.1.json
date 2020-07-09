@@ -8,6 +8,7 @@
         "type": "receiverDetails",
         "id": "wooCommerce",
         "name*": "wooCommerce orders",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/wooCommerce/help/help-0.1.html",
         "location*": "scripts/wooCommerce/wooCommerce-0.1.js",
         "localLibrary": {
             "global": [
