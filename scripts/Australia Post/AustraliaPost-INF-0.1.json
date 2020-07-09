@@ -5,6 +5,7 @@
     "config": {
         "disabled": false,
         "name*": "Australia Post",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/Australia Post/help/help-0.1.html",
         "process": {
             "initialURL*": "https://auspost.com.au/mypost-business/shipping-and-tracking/orders/add/retail",
             "targets": [{
