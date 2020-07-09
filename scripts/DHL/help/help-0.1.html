@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body style="font-family:arial">
+<h3>A plugin to making DHL shipments</h3>
+This plugin can connect with order plugins, weighing and cubing devices and an inventory system. The diagram below shows the process but it is really simple.
+  <ol>
+  <li>The DHL login screen will be brought up</li>
+  <li>Log in (don't worry NONE of the processing happens on our servers)</li>
+  <li>Enter a reference number (ie. an eBay order number)</li>
+  <li>If order plugins are detected they are queried for the reference number</li>
+  <li>The order plugin returns the receiver details and they are pushed into the booking</li>
+  <li>If devices are detected they are queried for values. Weighing scales and cubing machines are handled.</li>
+  <li>The device result are pushed into the booking</li>
+  <li>You accept the booking</li>
+  <li>If an inventory plugin is detected the order skus and quantities are passed in</li>
+  <li>The inventory system can adjust the stock levels</li>
+  </ol>
+<br/><br/>
+  <img src="Booking plugin.png">
+</body>
+</html>
