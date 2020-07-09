@@ -4,7 +4,8 @@
     ],
     "config": {
         "disabled": false,
-        "name*": "DHL (under development)",
+        "name*": "DHL",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/DHL/help/help-0.1.html",
         "process": {
             "initialURL*": "https://mydhl.express.dhl/",
             "targets": [{
