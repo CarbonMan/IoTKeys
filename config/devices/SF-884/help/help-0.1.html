@@ -3,10 +3,11 @@
 </head>
 <body style="font-family:arial">
 <h3>SF-884 is a weigh scales indicator</h3>
+<h4>Overview</h4>
 <br>
   If you are using this device without any other configuration options then the weight readings are available by pressing and holding the <b>Ctrl</b> and <b>Alt</b> keys then tapping the <b>w</b> key.
   This will work regardless of the application. One important quirk of this scale is that does not constantly put out values, it only sends out a new value when the value changes. So make sure the scale has nothing on it when the application starts.
-  <br/>
+  <br/><br/>
   The scales can be used for automatic operations when combined with a freight carrier plugin such as the Australia Post or DHL plugins. In these cases, the weight will be automatically inserted into the webpage, no additional key combinations are required.
 <h4>CONFIGURATION</h4>
 The configuration details are found in 2 files<br/>
@@ -42,10 +43,12 @@ The following screen will be loaded
 <img src="device manager.png">
 <br/><br/>
 The COM port is indicated in the (). So in this case it is "COM4". The portName line in the devices.json file would be: 
+<br/>
   ...
+  <br/>
   "portName" : "COM4",
+  <br/>
   ...
-  
   <h4>Troubleshooting</h4>
   If the SF-884 device is shown in the Ports with a warning, that will usually indicate that a device driver needs to be installed. You will need to obtain administrative privileges from your network or IT administrator in order to install these drivers.
   The driver can be found here
