@@ -1,8 +1,8 @@
 <html>
 <head>
 </head>
-<body>
-<h3>SF-884 is an scales indicator</h3>
+<body style="font-family:arial">
+<h3>SF-884 is a weigh scales indicator</h3>
 <br>
   If you are using this device without any other configuration options then the weight readings are available by pressing and holding the <b>Ctrl</b> and <b>Alt</b> keys then tapping the <b>w</b> key.
   This will work regardless of the application.
@@ -16,7 +16,7 @@ The configuration details are found in 2 files<br/>
   https://jsonlint.com/
   <br/>
   If the structure of the files is comprised then the application may not start correctly.<br/>
-  <h5>keyMaps.json</h5>
+  <h4>keyMaps.json</h4>
   This sets what key combination will read the scales. There may be situations where a key combination could interfere with the active application. In these cases the key combination can be changed.
   
   <ul>
@@ -27,7 +27,7 @@ The configuration details are found in 2 files<br/>
   </ul>
 <br/>
 <br/>
-  <h5>devices.json</h5>
+  <h4>devices.json</h4>
 Usually the only value that should be changed is the <b>portName</b>. If set to "?" then this will cause IoTKeys to scan the ports on startup. 
 This may not work in all cases. In situations where the scan detects the wrong USB device then the correct port needs to be entered into this file. If the device is moved to 
 another port then it will have to be reentered.
