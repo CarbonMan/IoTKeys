@@ -7,18 +7,25 @@
   If you are using this device without any other configuration options then the weight readings are available by pressing and holding the <b>Ctrl</b> and <b>Alt</b> keys then tapping the <b>w</b> key.
   This will work regardless of the application.
 <h4>CONFIGURATION</h4>
-The configuration details are found in 2 files keyMaps.json and devices.json. If, for any reason, changes are made in these files then the contents should be validated here;<br/>
+The configuration details are found in 2 files<br/>
+  <ol>
+    <li>keyMaps.json</li>
+    <li>devices.json</li>
+  </ol>
+  These are described below. If, for any reason, changes are made in these files then the contents should be validated here;<br/>
   https://jsonlint.com/
   <br/>
-  If the structure of the files is comprised then the application may not start correctly.
+  If the structure of the files is comprised then the application may not start correctly.<br/>
   <h5>keyMaps.json</h5>
   This sets what key combination will read the scales. There may be situations where a key combination could interfere with the active application. In these cases the key combination can be changed.
   
   <ul>
     <li>alt - Whether the Alt key needs to be pressed (false/true)</li>
     <li>ctrl - Whether the Ctrl key needs to be pressed (false/true)</li>
-    <li>keyCode - The keypress code to look for</li>
+    <li>keyCode - The keypress code to look for. A full list of keycodes is available here<br/>
+      https://raw.githubusercontent.com/CarbonMan/IoTKeys/master/config/KeyCodes.txt</li>
   </ul>
+<br/>
 <br/>
   <h5>devices.json</h5>
 Usually the only value that should be changed is the <b>portName</b>. If set to "?" then this will cause IoTKeys to scan the ports on startup. 
