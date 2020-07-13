@@ -7,6 +7,7 @@
         "type": "inventory",
         "id": "csvInventory",
         "name*": "CSV",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/csvInventory/help/help-0.1.html",
         "location*": "scripts/csvInventory/csvInventory-0.1.js",
         "localLibrary": {
             "global": ["wwwpub/js/papaparse.min.js"]
