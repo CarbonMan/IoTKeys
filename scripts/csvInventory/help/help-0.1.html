@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body style="font-family:arial">
+<h3>CSV inventory</h3>
+This plugin reads and writes a local inventory system.
+<br/>
+It can be used with the shipping plugins (ie. DHL or Australia Post) and the order plugins (ie. ebay or wooCommerce) to manage stock levels. There are 2 files involved
+<br/>
+<ol>
+<li><b>inventory.csv</b> this file holds the stocks levels by location by sku. A sku can be contained in one or more locations. As shipments are confirmed the stock levels will be
+adjusted.</li>
+<li><b>audit.csv</b> this file holds the date, order#, sku, location and the quantity removed.</li>
+</ol>
+The processing is by the sku number. So for example, when an ebay order is shipped via DHL the ebay sku will be used as a lookup into inventory.csv.
+<ul>
+<li>When there are multiple locations for a sku, those listed first will have their quantities adjusted.</li>
+<li>You may open the files in Excel to manage the entries. Do NOT have the files open in Excel when processing shipments. Excel locks the files so that they cannot be adjusted</li>
+<li>The files are stored in the data\csvInventory directory. So if you installed IoTkeys into c:\apps\IoTkeys then the file will be saved in c:\apps\IoTkeys\data\csvInventory</li>
+<li>If the files don't exist they will be automatically created</li>
+</ul>
+<br/>
+</body>
+</html>
