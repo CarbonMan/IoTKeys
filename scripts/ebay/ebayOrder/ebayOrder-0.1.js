@@ -24,11 +24,11 @@ if (files.length && files.length > -1) {
                 });
             }
         });
-		debugger;
         var orders = Papa.parse(ebayOrdersCSV, {
 				header: true,
                 skipEmptyLines: true
             });
+		ebayOrders.push(...orders.data);
     }, 0);
 }
 
@@ -41,7 +41,7 @@ this.ebayOrder = function (options) {
 
     if (!orderNumber)
         return null;
-    var orders = ebayOrders.data.filter(order => {
+    var orders = ebayOrders.filter(order => {
             return order["Order Number"] == orderNumber;
         });
     if (orders.length)
