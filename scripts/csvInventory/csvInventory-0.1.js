@@ -5,8 +5,9 @@ this.csvInventory = function (options) {
 function csvInventory() {
     var inventory = [],
     inventoryStr;
+	debugger;
     try {
-        inventoryStr = host.getInputFileContents("data/inventory.csv");
+        inventoryStr = host.getInputFileContents("data/csvInventory/inventory.csv");
     } catch (e) {
         alert("inventory.csv is in use. Resolve and then restart this screen.\nData corruption may occur");
 		throw new Error("Unable to access inventory.csv");
@@ -17,18 +18,18 @@ function csvInventory() {
     inventory = Papa.parse(inventoryStr, {
             header: true
         });
-    var orderHistory = [],
-    orderHistoryStr;
+    var audit = [],
+    auditStr;
     try {
-        orderHistoryStr = host.getInputFileContents("data/orderHistory.csv");
+        auditStr = host.getInputFileContents("data/csvInventory/audit.csv");
     } catch (e) {
-        alert("orderHistory.csv is in use. Resolve and then restart this screen.\nData corruption may occur");
-		throw new Error("Unable to access orderHistory.csv");
+        alert("audit.csv is in use. Resolve and then restart this screen.\nData corruption may occur");
+		throw new Error("Unable to access audit.csv");
     }
-    if (!orderHistoryStr) {
-        orderHistoryStr = "date,order,sku,location,qty";
+    if (!auditStr) {
+        auditStr = "date,order,sku,location,qty";
     }
-    orderHistory = Papa.parse(orderHistoryStr, {
+    audit = Papa.parse(auditStr, {
             header: true
         });
     this.removeFromInventory = function (options) {
@@ -57,7 +58,7 @@ function csvInventory() {
                     history.qty = -i.qty;
                     remaining -= i.qty;
                 }
-                orderHistory.data.push(history);
+                audit.data.push(history);
             }
         });
         if (!locations.length) {
@@ -66,7 +67,7 @@ function csvInventory() {
                 location: "unknown",
                 qty: -options.qty
             });
-            orderHistory.data.push({
+            audit.data.push({
                 date: formatDate(),
                 order: options.order,
                 location: "unknown",
@@ -77,9 +78,9 @@ function csvInventory() {
     };
     this.save = function () {
         var csv = Papa.unparse(inventory);
-        host.strToFile(csv, "data/inventory.csv");
-        var csv = Papa.unparse(orderHistory);
-        host.strToFile(csv, "data/orderHistory.csv");
+        host.strToFile(csv, "data/csvInventory/inventory.csv");
+        var csv = Papa.unparse(audit);
+        host.strToFile(csv, "data/csvInventory/audit.csv");
     };
     function formatDate() {
         var d = new Date(),
