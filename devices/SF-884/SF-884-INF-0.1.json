@@ -19,6 +19,11 @@
 			"onReceive": {
 				"file": "scripts/devices/SF-884/SF-884response-0.1.js"
 			}
+		},
+	  	"keyMap":{
+			"ctrl": true,
+			"alt" : true,
+			"keyCode" : ""
 		}
 	}
 }
