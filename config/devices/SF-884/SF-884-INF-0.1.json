@@ -30,6 +30,11 @@
         "portName": "?",
         "stopBits": 1,
         "dataBits": 8,
-        "delimiters": 0
+        "delimiters": 0,
+	  	"keyMap":{
+			"ctrl": true,
+			"alt" : true,
+			"keyCode" : 87
+		}
     }
 }
