@@ -1,6 +1,8 @@
 {
     "components": [
-        "scripts/DHL/DHL-0.1.js"
+        "scripts/DHL/DHL-0.1.js",
+        "data/country.csv",
+        "data/Australia/state.csv"
     ],
     "config": {
         "disabled": false,
