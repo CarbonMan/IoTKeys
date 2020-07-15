@@ -1,6 +1,8 @@
 {
     "components": [
-        "scripts\\Australia Post\\Australia Post-0.1.js"
+        "scripts\\Australia Post\\Australia Post-0.1.js",
+        "data/country.csv",
+        "data/Australia/state.csv"
     ],
     "config": {
         "disabled": false,
