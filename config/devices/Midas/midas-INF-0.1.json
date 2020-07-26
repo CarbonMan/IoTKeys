@@ -1,0 +1,22 @@
+{
+    "components": [
+        "wwwpub/TurnTable/js/index.js",
+        "wwwpub/TurnTable/js/turnTableController.js",
+        "wwwpub/js/jquery-3.1.1.min.js",
+        "wwwpub/js/jquery-ui.js",
+        "wwwpub/js/semantic-2.1.8.min.js",
+        "wwwpub/js/progressBar.js"
+    ],
+    "config": {
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/SF-884/help/help-0.1.html",
+        "breakOnLoad": false,
+        "regexp*": "(%d+%.%d+)",
+        "parity": 0,
+        "speed": 9600,
+        "baudRate": 9600,
+        "portName": "?",
+        "stopBits": 1,
+        "dataBits": 8,
+        "delimiters": 0,
+    }
+}
