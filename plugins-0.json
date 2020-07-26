@@ -1,11 +1,17 @@
 {
   "plugins": [
     {
+      "id": "GT_USB",
+  		"name": "Gordias turntable (USB)",
+		  "type": "Turntable",
+      "version": "0.1",
+      "infLocation": "config/devices/Gordias/gordias-INF-0.1.json"
+    },{
       "id": "MT_USB",
   		"name": "Midas turntable (USB)",
 		  "type": "Turntable",
       "version": "0.1",
-      "infLocation": "config/devices/Midas/SF-884-INF-0.1.json"
+      "infLocation": "config/devices/Midas/midas-INF-0.1.json"
     },
     {
       "id": "SF-884",
