@@ -2,13 +2,11 @@
     "components": [
         "wwwpub/TurnTable/js/index.js",
         "wwwpub/TurnTable/js/turnTableController.js",
-        "wwwpub/js/jquery-3.1.1.min.js",
-        "wwwpub/js/jquery-ui.js",
-        "wwwpub/js/semantic-2.1.8.min.js",
+        "wwwpub/TurnTable/css/index.css",
         "wwwpub/js/progressBar.js"
     ],
     "config": {
-        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/SF-884/help/help-0.1.html",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/Midas/help/help-0.1.html",
         "breakOnLoad": false,
         "regexp*": "(%d+%.%d+)",
         "parity": 0,
