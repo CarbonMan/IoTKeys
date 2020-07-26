@@ -1,6 +1,13 @@
 {
   "plugins": [
     {
+      "id": "MT_USB",
+  		"name": "Midas turntable (USB)",
+		  "type": "Turntable",
+      "version": "0.1",
+      "infLocation": "config/devices/Midas/SF-884-INF-0.1.json"
+    },
+    {
       "id": "SF-884",
       "category": "Device",
       "name": "SF-884 scales",
