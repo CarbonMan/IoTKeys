@@ -1,0 +1,20 @@
+{
+    "components": [
+        "wwwpub/TurnTable/js/index.js",
+        "wwwpub/TurnTable/js/turnTableController.js",
+        "wwwpub/TurnTable/css/index.css",
+        "wwwpub/js/progressBar.js"
+    ],
+    "config": {
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/Gordias/help/help-0.1.html",
+        "breakOnLoad": false,
+        "regexp*": "(%d+%.%d+)",
+        "parity": 0,
+        "speed": 9600,
+        "baudRate": 9600,
+        "portName": "?",
+        "stopBits": 1,
+        "dataBits": 8,
+        "delimiters": 0,
+    }
+}
