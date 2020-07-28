@@ -6,6 +6,7 @@
     "config": {
         "disabled": false,
         "name*": "Centaur",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/Centaur/help/help-0.1.html",
         "process": {
             "initialURL": "http://demo.laberg.com.au/common/foxisapi.dll/intracargo.x2.login",
             "targets": [{
