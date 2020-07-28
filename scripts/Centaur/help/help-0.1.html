@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body style="font-family:arial">
+<h3>A plugin for using the Centaur Mailroom Management System</h3>
+This plugin can connect with weighing and cubing devices. When it is first installed it will default to loading the Centaur demonstration system. When you signed up to the Centaur
+service with Laberg you would have been given a URL that is used through the browser in order to record transactions. IoTKeys needs to load that URL.
+<br/>
+For example, if you go to;
+<br/>
+http://myUni.laberg.com.au/common/foxisapi.dll/intracargo.x2.login
+<br/>
+in order to process transactions, then that URL needs to be entered into the file urlMaps.json.
+<br/>
+Go to the directory where IoTKeys was installed and search for the file urlMaps.json. Look for the line;
+<b>"initialURL": "http://demo.laberg.com.au/common/foxisapi.dll/intracargo.x2.login",</b>
+<br/>
+and change it to
+<br/>
+"initialURL": "http://myUni.laberg.com.au/common/foxisapi.dll/intracargo.x2.login",
+<br/>
+Save the file and start IoTKeys.
+</body>
+</html>
