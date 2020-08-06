@@ -7,7 +7,7 @@
 	"config/devices/SF-884/UI/views/config.html"
     ],
     "config": {
-        "debug": true,
+        "debug": false,
         "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/SF-884/help/help-0.1.html",
         "breakOnLoad": false,
         "scripts*": {
