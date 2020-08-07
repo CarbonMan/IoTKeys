@@ -3,7 +3,7 @@
         "config/devices/SF-884/SF-884 init-0.1.js",
         "config/devices/SF-884/SF-884 request-0.1.js",
         "config/devices/SF-884/SF-884 response-0.1.js",
-	"config/devices/SF-884/routes.js",
+	"config/devices/SF-884/UI/routes.js",
 	"config/devices/SF-884/UI/views/config.html"
     ],
     "config": {
