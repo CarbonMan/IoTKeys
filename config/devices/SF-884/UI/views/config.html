@@ -1,7 +1,45 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/semantic.min.css" >
+<script src="/js/jquery.min.js"></script>
 </head>
 <body>
-	<%= JSON.stringify(config); %>
+<script>
+	var config = <%- JSON.stringify(config); %>;
+</script>	
+<br/>
+<h4 class="ui dividing header">SF-884 scales configuration</h4>
+<div class="field">
+    <label>COM Port</label>
+    <div class="fields">
+      <div class="two wide field">
+        <input type="text" id="portName" placeholder="(? = detect)">
+      </div>
+      <div class="fourteen wide field">
+	  Leave as ? unless you are experiencing conflicts with other USB devices.
+      </div>
+    </div>
+  </div>
+<br/>
+  <button class="ui green button" id="save">SAVE</button>
+<script>
+$(()=>{
+	$("#portName").val(config.portName);
+	$("#save").click( ()=>{
+		console.log("clicked");
+		config.portName = $("#portName").val();
+		$.ajax({
+			url: "/devices/SF-884/config",
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(config),
+			success: ()=>{
+				alert( "Saved\nYou may need to restart the application" );
+			}
+		});
+	});
+});
+</script>
+
 </body>
 </html>
