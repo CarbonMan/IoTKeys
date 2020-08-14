@@ -1,13 +1,23 @@
 {
   "plugins": [
+	  {
+      "id": "Cubist",
+		  "category": "Device",
+  		"name": "Cubist",
+		  "type": "cubing",
+      "version": "0.1",
+      "infLocation": "config/devices/Cubist/Cubist-INF-0.1.json"
+    },
     {
       "id": "GT_USB",
+	    "category": "Device",
   		"name": "Gordias turntable (USB)",
 		  "type": "Turntable",
       "version": "0.1",
       "infLocation": "config/devices/Gordias/gordias-INF-0.1.json"
     },{
       "id": "MT_USB",
+	"category": "Device",
   		"name": "Midas turntable (USB)",
 		  "type": "Turntable",
       "version": "0.1",
