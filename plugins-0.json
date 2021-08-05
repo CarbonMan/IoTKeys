@@ -1,95 +1,92 @@
 {
-  "plugins": [
-	  {
-      "id": "Cubist",
-		  "category": "Device",
-  		"name": "Cubist",
-		  "type": "cubing",
-      "version": "0.1",
-      "infLocation": "config/devices/Cubist/Cubist-INF-0.1.json"
-    },
-    {
-      "id": "GT_USB",
-	    "category": "Device",
-  		"name": "Gordias turntable (USB)",
-		  "type": "Turntable",
-      "version": "0.1",
-      "infLocation": "config/devices/Gordias/gordias-INF-0.1.json"
-    },{
-      "id": "MT_USB",
-	"category": "Device",
-  		"name": "Midas turntable (USB)",
-		  "type": "Turntable",
-      "version": "0.1",
-      "infLocation": "config/devices/Midas/midas-INF-0.1.json"
-    },
-    {
-      "id": "SF-884",
-      "category": "Device",
-      "name": "SF-884 scales",
-      "type": "scales",
-      "version": "0.1",
-      "descriptionLocation": "config/devices/SF-884/description-0.1.txt",
-      "infLocation": "config/devices/SF-884/SF-884-INF-0.1.json"
-    },
-    {
-      "id": "AustraliaPost",
-      "category": "URL",
-      "name": "Australia Post",
-      "version": "0.1",
-      "descriptionLocation": "scripts/Australia Post/description-0.1.txt",
-      "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
-    },
-    {
-      "id": "Fastway",
-      "category": "URL",
-      "name": "Fastway (under development)",
-      "version": "0.1",
-      "descriptionLocation": "scripts/Fastway/description-0.1.txt",
-      "infLocation": "scripts/Fastway/Fastway-INF-0.1.json"
-    },
-    {
-      "id": "DHL",
-      "category": "URL",
-      "name": "DHL (under development)",
-      "version": "0.1",
-      "descriptionLocation": "scripts/DHL/description-0.1.txt",
-      "infLocation": "scripts/DHL/DHL-INF-0.1.json"
-    },
-    {
-      "id": "Centaur",
-      "category": "URL",
-      "name": "Centaur MMS",
-      "version": "0.1",
-      "descriptionLocation": "scripts/Centaur/description-0.1.txt",
-      "infLocation": "scripts/Centaur/Centaur-INF-0.1.json"
-    },
-    {
-      "id": "csvInventory",
-      "category": "LocalScript",
-      "name": "CSV inventory",
-      "type": "inventory",
-      "version": "0.1",
-      "descriptionLocation": "scripts/csvInventory/description-0.1.txt",
-      "infLocation": "scripts/csvInventory/csvInventory-INF-0.1.json"
-    },
-    {
-      "id": "ebayOrder",
-      "category": "LocalScript",
-      "type": "orderDetails",
-      "name": "Order details from ebay",
-      "version": "0.1",
-      "descriptionLocation": "scripts/ebay/ebayOrder/description-0.1.txt",
-      "infLocation": "scripts/ebay/ebayOrder/ebayOrder-INF-0.1.json"
-    },
-    {
-      "id": "wooCommerceOrder",
-      "category": "LocalScript",
-      "type": "orderDetails",
-      "name": "Order details from wooCommerce",
-      "version": "0.1",
-      "descriptionLocation": "scripts/wooCommerce/description-0.1.txt",
-      "infLocation": "scripts/wooCommerce/wooCommerce-INF-0.1.json"
-    }      
-  ]
+    "plugins": [{
+            "id": "Cubist",
+            "category": "Device",
+            "name": "Cubist",
+            "type": "cubing",
+            "version": "0.1",
+            "infLocation": "config/devices/Cubist/Cubist-INF-0.1.json"
+        }, {
+            "id": "GT_USB",
+            "category": "Device",
+            "name": "Gordias turntable (USB)",
+            "type": "Turntable",
+            "version": "0.1",
+            "infLocation": "config/devices/Gordias/gordias-INF-0.1.json"
+        }, {
+            "id": "MT_USB",
+            "category": "Device",
+            "name": "Midas turntable (USB)",
+            "type": "Turntable",
+            "version": "0.1",
+            "infLocation": "config/devices/Midas/midas-INF-0.1.json"
+        }, {
+            "id": "SF-884",
+            "category": "Device",
+            "name": "SF-884 scales",
+            "type": "scales",
+            "version": "0.1",
+            "descriptionLocation": "config/devices/SF-884/description-0.1.txt",
+            "infLocation": "config/devices/SF-884/SF-884-INF-0.1.json"
+        }, {
+            "id": "AustraliaPost",
+            "category": "URL",
+            "name": "Australia Post",
+            "version": "0.1",
+            "descriptionLocation": "scripts/Australia Post/description-0.1.txt",
+            "infLocation": "scripts/Australia Post/AustraliaPost-INF-0.1.json"
+        }, {
+            "id": "Fastway",
+            "category": "URL",
+            "name": "Fastway (under development)",
+            "version": "0.1",
+            "descriptionLocation": "scripts/Fastway/description-0.1.txt",
+            "infLocation": "scripts/Fastway/Fastway-INF-0.1.json"
+        }, {
+            "id": "DHL",
+            "category": "URL",
+            "name": "DHL (under development)",
+            "version": "0.1",
+            "descriptionLocation": "scripts/DHL/description-0.1.txt",
+            "infLocation": "scripts/DHL/DHL-INF-0.1.json"
+        }, {
+            "id": "Centaur",
+            "category": "URL",
+            "name": "Centaur MMS",
+            "version": "0.1",
+            "descriptionLocation": "scripts/Centaur/description-0.1.txt",
+            "infLocation": "scripts/Centaur/Centaur-INF-0.1.json"
+        }, {
+            "id": "CentaurTraining",
+            "category": "URL",
+            "name": "Centaur MMS - training",
+            "version": "0.1",
+            "descriptionLocation": "scripts/Centaur-training/description-0.1.txt",
+            "infLocation": "scripts/Centaur-training/Centaur-training-INF-0.1.json"
+        }, {
+            "id": "csvInventory",
+            "category": "LocalScript",
+            "name": "CSV inventory",
+            "type": "inventory",
+            "version": "0.1",
+            "descriptionLocation": "scripts/csvInventory/description-0.1.txt",
+            "infLocation": "scripts/csvInventory/csvInventory-INF-0.1.json"
+        }, {
+            "id": "ebayOrder",
+            "category": "LocalScript",
+            "type": "orderDetails",
+            "name": "Order details from ebay",
+            "version": "0.1",
+            "descriptionLocation": "scripts/ebay/ebayOrder/description-0.1.txt",
+            "infLocation": "scripts/ebay/ebayOrder/ebayOrder-INF-0.1.json"
+        }, {
+            "id": "wooCommerceOrder",
+            "category": "LocalScript",
+            "type": "orderDetails",
+            "name": "Order details from wooCommerce",
+            "version": "0.1",
+            "descriptionLocation": "scripts/wooCommerce/description-0.1.txt",
+            "infLocation": "scripts/wooCommerce/wooCommerce-INF-0.1.json"
+        }
+    ]
 }
