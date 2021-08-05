@@ -1,0 +1,2 @@
+Centaur Mailroom Management System training.
+The entry in UrlMaps.json needs to be changed to reflect your allocated URL.
