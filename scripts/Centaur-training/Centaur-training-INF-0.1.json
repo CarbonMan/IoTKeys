@@ -1,0 +1,26 @@
+{
+    "components": [
+        "scripts/Centaur/inbound-0.1.js",
+        "scripts/Centaur-training/Centaur batched with cubist interface-0.1.js"
+    ],
+    "config": {
+        "disabled": false,
+        "name*": "Centaur training",
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/scripts/Centaur/help/help-0.1.html",
+        "process": {
+            "initialURL": "https://etrain.moodlecloud.com/course/view.php?id=15",
+            "targets": [{
+                    "id": "bulkParcel-training",
+                    "regexp*": "php\\?id=38$",
+                    "parameters": {
+                    },
+                    "scripts*": {
+                        "body": {
+                            "file": "scripts/Centaur-training/Centaur batched-training-0.1.js"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
