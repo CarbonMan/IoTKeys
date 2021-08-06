@@ -10,7 +10,7 @@
             "initialURL": "https://etrain.moodlecloud.com/course/view.php?id=15",
             "targets": [{
                     "id": "bulkParcel-training",
-                    "regexp*": "php\\?id=38$",
+                    "regexp*": "php\\?id=75$",
                     "parameters": {
                     },
                     "scripts*": {
