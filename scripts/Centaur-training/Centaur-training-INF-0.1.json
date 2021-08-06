@@ -1,7 +1,6 @@
 {
     "components": [
-        "scripts/Centaur/inbound-0.1.js",
-        "scripts/Centaur-training/Centaur batched with cubist interface-0.1.js"
+        "scripts/Centaur-training/Centaur batched-training-0.1.js"
     ],
     "config": {
         "disabled": false,
