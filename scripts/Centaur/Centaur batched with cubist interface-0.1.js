@@ -7,6 +7,14 @@ var invoice,
 
 $(function () {
     connote.fields('INTER_CHAR').on($db.enums.POST_FIELD_CHANGE, clearAndRead);
+	T$.on("training", (ev)=>{
+		var req = ev.value;
+		switch(req.action){
+		case 'highlight':
+			$('#'+req.id).css({"background-color": req.color || "lightgreen"});
+			break;
+		}
+	};
 });
 
 function clearAndRead() {
