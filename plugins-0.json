@@ -1,5 +1,12 @@
 {
     "plugins": [{
+            "id": "Arena",
+            "category": "Device",
+            "name": "Arena",
+            "type": "interface",
+            "version": "0.1",
+            "infLocation": "config/devices/Arena/Arena-INF-0.1.json"
+        },{
             "id": "Cubist",
             "category": "Device",
             "name": "Cubist",
