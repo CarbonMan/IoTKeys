@@ -10,7 +10,7 @@
         "breakOnLoad": false,
         "scripts*": {
             "onInit": {
-                "file": "config\\devices\\SF-884\\SF-884 init-0.1.js"
+                "file": "config\\devices\\Arena\\Arena init-0.1.js"
             }
         },
         "disabled": false,
