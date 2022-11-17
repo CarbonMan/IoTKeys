@@ -1,0 +1,25 @@
+{
+    "components": [
+        "config/devices/Arena/Arena init-0.1.js",
+	      "config/devices/Arena/UI/routes.js",
+	      "config/devices/Arena/UI/views/config.html"
+    ],
+    "config": {
+        "debug": false,
+        "helpUrl": "https://htmlpreview.github.io/?https://github.com/CarbonMan/IoTKeys/blob/master/config/devices/Arena/help/help-0.1.html",
+        "breakOnLoad": false,
+        "scripts*": {
+            "onInit": {
+                "file": "config\\devices\\SF-884\\SF-884 init-0.1.js"
+            }
+        },
+        "disabled": false,
+        "parity": 0,
+        "speed": 9600,
+        "baudRate": 9600,
+        "portName": "?",
+        "stopBits": 1,
+        "dataBits": 8,
+        "delimiters": 0
+    }
+}
